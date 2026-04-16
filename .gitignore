@@ -1,0 +1,29 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+# Ignore all model files except those explicitly tracked by LFS
+checkpoints/*
+!checkpoints/.gitkeep
+archive/*
+!archive/.gitkeep
+!archive/pretrained/
+
+# macOS system files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+LossAnalysis.ipynb
+.ipynb_checkpoints
+example_loggers
