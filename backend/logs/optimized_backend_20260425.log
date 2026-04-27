@@ -1,0 +1,516 @@
+2026-04-25 10:29:06,522 - optimized_backend - INFO - [realtime]📹 Starting optimized sign language detection server...[/realtime]
+2026-04-25 10:29:06,526 - optimized_backend - INFO - [info]Device: cpu | FP16: True | JIT: True[/info]
+2026-04-25 10:29:08,038 - optimized_backend - WARNING - [warning]JIT compile thất bại (expected scalar type Half but found Float), dùng eager mode.[/warning]
+2026-04-25 10:29:08,056 - optimized_backend - INFO - [info]Batch inference worker started.[/info]
+2026-04-25 10:29:27,808 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:49393[/info]
+2026-04-25 10:29:27,937 - optimized_backend - INFO - [info]Client 127.0.0.1:49393 disconnected.[/info]
+2026-04-25 10:29:27,940 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:49393[/info]
+2026-04-25 10:31:51,404 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:64953[/info]
+2026-04-25 10:32:06,284 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:49822[/info]
+2026-04-25 10:32:13,912 - optimized_backend - WARNING - [warning]Client 127.0.0.1:64953 timeout.[/warning]
+2026-04-25 10:32:13,914 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:64953[/info]
+2026-04-25 10:32:19,700 - optimized_backend - INFO - [info]Client 127.0.0.1:49822 disconnected.[/info]
+2026-04-25 10:32:19,703 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:49822[/info]
+2026-04-25 10:32:20,773 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:57153[/info]
+2026-04-25 10:32:49,643 - optimized_backend - WARNING - [warning]Client 127.0.0.1:57153 timeout.[/warning]
+2026-04-25 10:32:49,645 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:57153[/info]
+2026-04-25 10:37:09,731 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:60909[/info]
+2026-04-25 10:37:19,736 - optimized_backend - WARNING - [warning]Client 127.0.0.1:60909 timeout.[/warning]
+2026-04-25 10:37:19,740 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:60909[/info]
+2026-04-25 10:37:24,833 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:59556[/info]
+2026-04-25 10:38:05,610 - optimized_backend - WARNING - [warning]Client 127.0.0.1:59556 timeout.[/warning]
+2026-04-25 10:38:05,613 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:59556[/info]
+2026-04-25 10:38:07,931 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:57753[/info]
+2026-04-25 10:38:17,947 - optimized_backend - WARNING - [warning]Client 127.0.0.1:57753 timeout.[/warning]
+2026-04-25 10:38:17,949 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:57753[/info]
+2026-04-25 10:38:20,260 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:52292[/info]
+2026-04-25 10:38:30,264 - optimized_backend - WARNING - [warning]Client 127.0.0.1:52292 timeout.[/warning]
+2026-04-25 10:38:30,266 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:52292[/info]
+2026-04-25 10:38:32,575 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:51276[/info]
+2026-04-25 10:38:42,578 - optimized_backend - WARNING - [warning]Client 127.0.0.1:51276 timeout.[/warning]
+2026-04-25 10:38:42,581 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:51276[/info]
+2026-04-25 10:38:44,905 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:51910[/info]
+2026-04-25 10:38:45,638 - optimized_backend - INFO - [info]Client 127.0.0.1:51910 disconnected.[/info]
+2026-04-25 10:38:45,640 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:51910[/info]
+2026-04-25 13:32:52,187 - optimized_backend - INFO - [realtime]📹 Starting simple realtime sign language server...[/realtime]
+2026-04-25 13:32:52,193 - optimized_backend - INFO - [info]Device: cpu[/info]
+2026-04-25 13:34:38,410 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:56574[/info]
+2026-04-25 13:34:38,428 - optimized_backend - INFO - [info]Client 127.0.0.1:56574 disconnected.[/info]
+2026-04-25 13:34:38,433 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:56574[/info]
+2026-04-25 13:34:39,497 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:53431[/info]
+2026-04-25 13:34:39,504 - optimized_backend - INFO - [info]Client 127.0.0.1:53431 disconnected.[/info]
+2026-04-25 13:34:39,506 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:53431[/info]
+2026-04-25 13:34:39,855 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:63411[/info]
+2026-04-25 13:34:39,862 - optimized_backend - INFO - [info]Client 127.0.0.1:63411 disconnected.[/info]
+2026-04-25 13:34:39,863 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:63411[/info]
+2026-04-25 13:34:40,231 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:64819[/info]
+2026-04-25 13:34:40,603 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:56835[/info]
+2026-04-25 13:34:40,610 - optimized_backend - INFO - [info]Client 127.0.0.1:56835 disconnected.[/info]
+2026-04-25 13:34:40,612 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:56835[/info]
+2026-04-25 13:34:41,023 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:61061[/info]
+2026-04-25 13:34:41,416 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:64166[/info]
+2026-04-25 13:34:41,821 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:55345[/info]
+2026-04-25 13:34:41,828 - optimized_backend - INFO - [info]Client 127.0.0.1:55345 disconnected.[/info]
+2026-04-25 13:34:41,830 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:55345[/info]
+2026-04-25 13:34:42,184 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:64349[/info]
+2026-04-25 13:34:42,190 - optimized_backend - INFO - [info]Client 127.0.0.1:64349 disconnected.[/info]
+2026-04-25 13:34:42,192 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:64349[/info]
+2026-04-25 13:34:42,603 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:64614[/info]
+2026-04-25 13:34:42,990 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:57892[/info]
+2026-04-25 13:34:42,998 - optimized_backend - INFO - [info]Client 127.0.0.1:57892 disconnected.[/info]
+2026-04-25 13:34:43,001 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:57892[/info]
+2026-04-25 13:34:43,410 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:50926[/info]
+2026-04-25 13:34:43,418 - optimized_backend - INFO - [info]Client 127.0.0.1:50926 disconnected.[/info]
+2026-04-25 13:34:43,420 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:50926[/info]
+2026-04-25 13:34:43,787 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:57021[/info]
+2026-04-25 13:34:43,793 - optimized_backend - INFO - [info]Client 127.0.0.1:57021 disconnected.[/info]
+2026-04-25 13:34:43,794 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:57021[/info]
+2026-04-25 13:34:44,167 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:60815[/info]
+2026-04-25 13:34:44,172 - optimized_backend - INFO - [info]Client 127.0.0.1:60815 disconnected.[/info]
+2026-04-25 13:34:44,174 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:60815[/info]
+2026-04-25 13:34:44,570 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:55910[/info]
+2026-04-25 13:34:44,929 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:59332[/info]
+2026-04-25 13:34:45,331 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:50639[/info]
+2026-04-25 13:34:45,720 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:58950[/info]
+2026-04-25 13:34:45,726 - optimized_backend - INFO - [info]Client 127.0.0.1:58950 disconnected.[/info]
+2026-04-25 13:34:45,729 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:58950[/info]
+2026-04-25 13:34:46,122 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:57967[/info]
+2026-04-25 13:34:46,514 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:54944[/info]
+2026-04-25 13:34:46,935 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:62039[/info]
+2026-04-25 13:34:46,941 - optimized_backend - INFO - [info]Client 127.0.0.1:62039 disconnected.[/info]
+2026-04-25 13:34:46,943 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:62039[/info]
+2026-04-25 13:34:47,338 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:60982[/info]
+2026-04-25 13:34:47,773 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:49914[/info]
+2026-04-25 13:34:48,195 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:63954[/info]
+2026-04-25 13:34:48,601 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:53423[/info]
+2026-04-25 13:34:48,607 - optimized_backend - INFO - [info]Client 127.0.0.1:53423 disconnected.[/info]
+2026-04-25 13:34:48,609 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:53423[/info]
+2026-04-25 13:34:48,988 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:56737[/info]
+2026-04-25 13:34:48,993 - optimized_backend - INFO - [info]Client 127.0.0.1:56737 disconnected.[/info]
+2026-04-25 13:34:48,995 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:56737[/info]
+2026-04-25 13:34:49,381 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:52655[/info]
+2026-04-25 13:34:49,757 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:64621[/info]
+2026-04-25 13:34:49,766 - optimized_backend - INFO - [info]Client 127.0.0.1:64621 disconnected.[/info]
+2026-04-25 13:34:49,769 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:64621[/info]
+2026-04-25 13:34:50,019 - optimized_backend - INFO - [info]Client 127.0.0.1:64819 disconnected.[/info]
+2026-04-25 13:34:50,021 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:64819[/info]
+2026-04-25 13:34:50,023 - optimized_backend - INFO - [info]Client 127.0.0.1:61061 disconnected.[/info]
+2026-04-25 13:34:50,025 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:61061[/info]
+2026-04-25 13:34:50,029 - optimized_backend - INFO - [info]Client 127.0.0.1:64166 disconnected.[/info]
+2026-04-25 13:34:50,031 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:64166[/info]
+2026-04-25 13:34:50,036 - optimized_backend - INFO - [info]Client 127.0.0.1:64614 disconnected.[/info]
+2026-04-25 13:34:50,040 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:64614[/info]
+2026-04-25 13:34:50,044 - optimized_backend - INFO - [info]Client 127.0.0.1:55910 disconnected.[/info]
+2026-04-25 13:34:50,046 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:55910[/info]
+2026-04-25 13:34:50,049 - optimized_backend - INFO - [info]Client 127.0.0.1:59332 disconnected.[/info]
+2026-04-25 13:34:50,051 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:59332[/info]
+2026-04-25 13:34:50,054 - optimized_backend - INFO - [info]Client 127.0.0.1:50639 disconnected.[/info]
+2026-04-25 13:34:50,056 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:50639[/info]
+2026-04-25 13:34:50,058 - optimized_backend - INFO - [info]Client 127.0.0.1:57967 disconnected.[/info]
+2026-04-25 13:34:50,060 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:57967[/info]
+2026-04-25 13:34:50,062 - optimized_backend - INFO - [info]Client 127.0.0.1:54944 disconnected.[/info]
+2026-04-25 13:34:50,064 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:54944[/info]
+2026-04-25 13:34:50,066 - optimized_backend - INFO - [info]Client 127.0.0.1:60982 disconnected.[/info]
+2026-04-25 13:34:50,068 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:60982[/info]
+2026-04-25 13:34:50,070 - optimized_backend - INFO - [info]Client 127.0.0.1:49914 disconnected.[/info]
+2026-04-25 13:34:50,072 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:49914[/info]
+2026-04-25 13:34:50,075 - optimized_backend - INFO - [info]Client 127.0.0.1:63954 disconnected.[/info]
+2026-04-25 13:34:50,078 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:63954[/info]
+2026-04-25 13:34:50,080 - optimized_backend - INFO - [info]Client 127.0.0.1:52655 disconnected.[/info]
+2026-04-25 13:34:50,082 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:52655[/info]
+2026-04-25 13:34:51,096 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:62829[/info]
+2026-04-25 13:34:51,102 - optimized_backend - INFO - [info]Client 127.0.0.1:62829 disconnected.[/info]
+2026-04-25 13:34:51,104 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:62829[/info]
+2026-04-25 13:34:52,154 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:63258[/info]
+2026-04-25 13:34:52,161 - optimized_backend - INFO - [info]Client 127.0.0.1:63258 disconnected.[/info]
+2026-04-25 13:34:52,163 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:63258[/info]
+2026-04-25 13:34:52,545 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:62586[/info]
+2026-04-25 13:34:52,551 - optimized_backend - INFO - [info]Client 127.0.0.1:62586 disconnected.[/info]
+2026-04-25 13:34:52,553 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:62586[/info]
+2026-04-25 13:34:52,923 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:52472[/info]
+2026-04-25 13:34:53,324 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:54875[/info]
+2026-04-25 13:34:53,330 - optimized_backend - INFO - [info]Client 127.0.0.1:54875 disconnected.[/info]
+2026-04-25 13:34:53,332 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:54875[/info]
+2026-04-25 13:34:53,714 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:53312[/info]
+2026-04-25 13:34:54,087 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:62878[/info]
+2026-04-25 13:34:54,507 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:55973[/info]
+2026-04-25 13:34:54,908 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:58590[/info]
+2026-04-25 13:34:55,301 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:60629[/info]
+2026-04-25 13:34:55,307 - optimized_backend - INFO - [info]Client 127.0.0.1:60629 disconnected.[/info]
+2026-04-25 13:34:55,310 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:60629[/info]
+2026-04-25 13:34:55,676 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:57470[/info]
+2026-04-25 13:34:55,683 - optimized_backend - INFO - [info]Client 127.0.0.1:57470 disconnected.[/info]
+2026-04-25 13:34:55,684 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:57470[/info]
+2026-04-25 13:34:56,083 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:55180[/info]
+2026-04-25 13:34:56,473 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:56737[/info]
+2026-04-25 13:34:56,861 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:51080[/info]
+2026-04-25 13:34:57,230 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:59167[/info]
+2026-04-25 13:34:57,236 - optimized_backend - INFO - [info]Client 127.0.0.1:59167 disconnected.[/info]
+2026-04-25 13:34:57,238 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:59167[/info]
+2026-04-25 13:34:57,622 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:61726[/info]
+2026-04-25 13:34:58,012 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:64659[/info]
+2026-04-25 13:34:58,388 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:54624[/info]
+2026-04-25 13:34:58,394 - optimized_backend - INFO - [info]Client 127.0.0.1:54624 disconnected.[/info]
+2026-04-25 13:34:58,396 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:54624[/info]
+2026-04-25 13:34:58,777 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:59483[/info]
+2026-04-25 13:34:59,150 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:57869[/info]
+2026-04-25 13:34:59,156 - optimized_backend - INFO - [info]Client 127.0.0.1:57869 disconnected.[/info]
+2026-04-25 13:34:59,158 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:57869[/info]
+2026-04-25 13:34:59,538 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:54092[/info]
+2026-04-25 13:34:59,544 - optimized_backend - INFO - [info]Client 127.0.0.1:54092 disconnected.[/info]
+2026-04-25 13:34:59,546 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:54092[/info]
+2026-04-25 13:34:59,958 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:64388[/info]
+2026-04-25 13:35:00,364 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:57266[/info]
+2026-04-25 13:35:00,767 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:59374[/info]
+2026-04-25 13:35:00,774 - optimized_backend - INFO - [info]Client 127.0.0.1:59374 disconnected.[/info]
+2026-04-25 13:35:00,776 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:59374[/info]
+2026-04-25 13:35:01,156 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:55907[/info]
+2026-04-25 13:35:01,548 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:49558[/info]
+2026-04-25 13:35:01,965 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:56807[/info]
+2026-04-25 13:35:02,340 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:49713[/info]
+2026-04-25 13:35:02,347 - optimized_backend - INFO - [info]Client 127.0.0.1:49713 disconnected.[/info]
+2026-04-25 13:35:02,349 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:49713[/info]
+2026-04-25 13:35:02,726 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:54118[/info]
+2026-04-25 13:35:03,101 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:53277[/info]
+2026-04-25 13:35:03,107 - optimized_backend - INFO - [info]Client 127.0.0.1:53277 disconnected.[/info]
+2026-04-25 13:35:03,109 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:53277[/info]
+2026-04-25 13:35:05,523 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:59038[/info]
+2026-04-25 13:35:05,530 - optimized_backend - INFO - [info]Client 127.0.0.1:59038 disconnected.[/info]
+2026-04-25 13:35:05,532 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:59038[/info]
+2026-04-25 13:35:05,911 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:51128[/info]
+2026-04-25 13:35:05,919 - optimized_backend - INFO - [info]Client 127.0.0.1:51128 disconnected.[/info]
+2026-04-25 13:35:05,921 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:51128[/info]
+2026-04-25 13:35:06,291 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:54686[/info]
+2026-04-25 13:35:06,297 - optimized_backend - INFO - [info]Client 127.0.0.1:54686 disconnected.[/info]
+2026-04-25 13:35:06,300 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:54686[/info]
+2026-04-25 13:35:06,678 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:62098[/info]
+2026-04-25 13:35:07,065 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:55784[/info]
+2026-04-25 13:35:07,079 - optimized_backend - INFO - [info]Client 127.0.0.1:55784 disconnected.[/info]
+2026-04-25 13:35:07,082 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:55784[/info]
+2026-04-25 13:35:07,501 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:52378[/info]
+2026-04-25 13:35:07,893 - optimized_backend - INFO - [info]Client 127.0.0.1:61726 disconnected.[/info]
+2026-04-25 13:35:07,895 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:61726[/info]
+2026-04-25 13:35:07,902 - optimized_backend - INFO - [info]Client 127.0.0.1:49558 disconnected.[/info]
+2026-04-25 13:35:07,905 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:49558[/info]
+2026-04-25 13:35:07,909 - optimized_backend - INFO - [info]Client 127.0.0.1:53312 disconnected.[/info]
+2026-04-25 13:35:07,911 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:53312[/info]
+2026-04-25 13:35:07,914 - optimized_backend - INFO - [info]Client 127.0.0.1:62098 disconnected.[/info]
+2026-04-25 13:35:07,915 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:62098[/info]
+2026-04-25 13:35:07,918 - optimized_backend - INFO - [info]Client 127.0.0.1:55973 disconnected.[/info]
+2026-04-25 13:35:07,922 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:55973[/info]
+2026-04-25 13:35:07,925 - optimized_backend - INFO - [info]Client 127.0.0.1:54118 disconnected.[/info]
+2026-04-25 13:35:07,928 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:54118[/info]
+2026-04-25 13:35:07,932 - optimized_backend - INFO - [info]Client 127.0.0.1:56737 disconnected.[/info]
+2026-04-25 13:35:07,935 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:56737[/info]
+2026-04-25 13:35:07,938 - optimized_backend - INFO - [info]Client 127.0.0.1:57266 disconnected.[/info]
+2026-04-25 13:35:07,940 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:57266[/info]
+2026-04-25 13:35:07,942 - optimized_backend - INFO - [info]Client 127.0.0.1:52472 disconnected.[/info]
+2026-04-25 13:35:07,945 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:52472[/info]
+2026-04-25 13:35:07,947 - optimized_backend - INFO - [info]Client 127.0.0.1:56807 disconnected.[/info]
+2026-04-25 13:35:07,950 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:56807[/info]
+2026-04-25 13:35:07,951 - optimized_backend - INFO - [info]Client 127.0.0.1:64388 disconnected.[/info]
+2026-04-25 13:35:07,953 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:64388[/info]
+2026-04-25 13:35:07,955 - optimized_backend - INFO - [info]Client 127.0.0.1:64659 disconnected.[/info]
+2026-04-25 13:35:07,957 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:64659[/info]
+2026-04-25 13:35:07,959 - optimized_backend - INFO - [info]Client 127.0.0.1:55907 disconnected.[/info]
+2026-04-25 13:35:07,961 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:55907[/info]
+2026-04-25 13:35:07,964 - optimized_backend - INFO - [info]Client 127.0.0.1:58590 disconnected.[/info]
+2026-04-25 13:35:07,965 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:58590[/info]
+2026-04-25 13:35:07,968 - optimized_backend - INFO - [info]Client 127.0.0.1:59483 disconnected.[/info]
+2026-04-25 13:35:07,971 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:59483[/info]
+2026-04-25 13:35:07,973 - optimized_backend - INFO - [info]Client 127.0.0.1:51080 disconnected.[/info]
+2026-04-25 13:35:07,976 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:51080[/info]
+2026-04-25 13:35:07,979 - optimized_backend - INFO - [info]Client 127.0.0.1:55180 disconnected.[/info]
+2026-04-25 13:35:07,982 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:55180[/info]
+2026-04-25 13:35:07,985 - optimized_backend - INFO - [info]Client 127.0.0.1:52378 disconnected.[/info]
+2026-04-25 13:35:07,988 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:52378[/info]
+2026-04-25 13:35:07,991 - optimized_backend - INFO - [info]Client 127.0.0.1:62878 disconnected.[/info]
+2026-04-25 13:35:07,993 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:62878[/info]
+2026-04-25 13:39:47,630 - optimized_backend - INFO - [info]Server shutdown complete.[/info]
+2026-04-25 13:45:04,077 - optimized_backend - INFO - [realtime]📹 Starting simple realtime sign language server...[/realtime]
+2026-04-25 13:45:04,079 - optimized_backend - INFO - [info]Device: cpu[/info]
+2026-04-25 13:45:07,536 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:59949[/info]
+2026-04-25 13:45:07,543 - optimized_backend - INFO - [info]Client 127.0.0.1:59949 disconnected.[/info]
+2026-04-25 13:45:07,546 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:59949[/info]
+2026-04-25 13:45:08,686 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:55021[/info]
+2026-04-25 13:45:08,692 - optimized_backend - INFO - [info]Client 127.0.0.1:55021 disconnected.[/info]
+2026-04-25 13:45:08,695 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:55021[/info]
+2026-04-25 13:45:09,765 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:63282[/info]
+2026-04-25 13:45:09,771 - optimized_backend - INFO - [info]Client 127.0.0.1:63282 disconnected.[/info]
+2026-04-25 13:45:09,773 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:63282[/info]
+2026-04-25 13:45:22,351 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:49490[/info]
+2026-04-25 13:45:22,360 - optimized_backend - INFO - [info]Client 127.0.0.1:49490 disconnected.[/info]
+2026-04-25 13:45:22,363 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:49490[/info]
+2026-04-25 13:45:23,409 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:54111[/info]
+2026-04-25 13:45:23,416 - optimized_backend - INFO - [info]Client 127.0.0.1:54111 disconnected.[/info]
+2026-04-25 13:45:23,418 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:54111[/info]
+2026-04-25 13:45:24,469 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:54219[/info]
+2026-04-25 13:45:24,477 - optimized_backend - INFO - [info]Client 127.0.0.1:54219 disconnected.[/info]
+2026-04-25 13:45:24,479 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:54219[/info]
+2026-04-25 13:45:25,530 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:63178[/info]
+2026-04-25 13:45:25,537 - optimized_backend - INFO - [info]Client 127.0.0.1:63178 disconnected.[/info]
+2026-04-25 13:45:25,539 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:63178[/info]
+2026-04-25 13:45:26,590 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:59608[/info]
+2026-04-25 13:45:26,597 - optimized_backend - INFO - [info]Client 127.0.0.1:59608 disconnected.[/info]
+2026-04-25 13:45:26,601 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:59608[/info]
+2026-04-25 13:46:04,481 - optimized_backend - INFO - [realtime]📹 Starting simple realtime sign language server...[/realtime]
+2026-04-25 13:46:04,484 - optimized_backend - INFO - [info]Device: cpu[/info]
+2026-04-25 13:46:16,701 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:56536[/info]
+2026-04-25 13:46:16,710 - optimized_backend - INFO - [info]Client 127.0.0.1:56536 disconnected.[/info]
+2026-04-25 13:46:16,713 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:56536[/info]
+2026-04-25 13:46:17,791 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:63498[/info]
+2026-04-25 13:46:17,798 - optimized_backend - INFO - [info]Client 127.0.0.1:63498 disconnected.[/info]
+2026-04-25 13:46:17,801 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:63498[/info]
+2026-04-25 13:46:18,850 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:61674[/info]
+2026-04-25 13:46:18,857 - optimized_backend - INFO - [info]Client 127.0.0.1:61674 disconnected.[/info]
+2026-04-25 13:46:18,859 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:61674[/info]
+2026-04-25 13:46:19,913 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:50296[/info]
+2026-04-25 13:46:19,919 - optimized_backend - INFO - [info]Client 127.0.0.1:50296 disconnected.[/info]
+2026-04-25 13:46:19,920 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:50296[/info]
+2026-04-25 13:46:21,003 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:50061[/info]
+2026-04-25 13:46:21,010 - optimized_backend - INFO - [info]Client 127.0.0.1:50061 disconnected.[/info]
+2026-04-25 13:46:21,011 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:50061[/info]
+2026-04-25 13:46:22,052 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:60831[/info]
+2026-04-25 13:46:22,060 - optimized_backend - INFO - [info]Client 127.0.0.1:60831 disconnected.[/info]
+2026-04-25 13:46:22,062 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:60831[/info]
+2026-04-25 13:46:23,123 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:49823[/info]
+2026-04-25 13:46:23,132 - optimized_backend - INFO - [info]Client 127.0.0.1:49823 disconnected.[/info]
+2026-04-25 13:46:23,134 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:49823[/info]
+2026-04-25 13:46:24,212 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:63909[/info]
+2026-04-25 13:46:24,219 - optimized_backend - INFO - [info]Client 127.0.0.1:63909 disconnected.[/info]
+2026-04-25 13:46:24,221 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:63909[/info]
+2026-04-25 13:46:25,302 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:52042[/info]
+2026-04-25 13:46:25,308 - optimized_backend - INFO - [info]Client 127.0.0.1:52042 disconnected.[/info]
+2026-04-25 13:46:25,309 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:52042[/info]
+2026-04-25 13:46:26,394 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:59372[/info]
+2026-04-25 13:46:26,399 - optimized_backend - INFO - [info]Client 127.0.0.1:59372 disconnected.[/info]
+2026-04-25 13:46:26,401 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:59372[/info]
+2026-04-25 13:46:27,473 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:58303[/info]
+2026-04-25 13:46:27,480 - optimized_backend - INFO - [info]Client 127.0.0.1:58303 disconnected.[/info]
+2026-04-25 13:46:27,481 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:58303[/info]
+2026-04-25 13:46:28,533 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:54022[/info]
+2026-04-25 13:46:28,538 - optimized_backend - INFO - [info]Client 127.0.0.1:54022 disconnected.[/info]
+2026-04-25 13:46:28,539 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:54022[/info]
+2026-04-25 13:46:29,650 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:50657[/info]
+2026-04-25 13:46:29,657 - optimized_backend - INFO - [info]Client 127.0.0.1:50657 disconnected.[/info]
+2026-04-25 13:46:29,658 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:50657[/info]
+2026-04-25 13:46:30,744 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:62261[/info]
+2026-04-25 13:46:30,749 - optimized_backend - INFO - [info]Client 127.0.0.1:62261 disconnected.[/info]
+2026-04-25 13:46:30,751 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:62261[/info]
+2026-04-25 13:46:31,835 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:64184[/info]
+2026-04-25 13:46:31,843 - optimized_backend - INFO - [info]Client 127.0.0.1:64184 disconnected.[/info]
+2026-04-25 13:46:31,844 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:64184[/info]
+2026-04-25 13:46:32,929 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:62340[/info]
+2026-04-25 13:46:32,935 - optimized_backend - INFO - [info]Client 127.0.0.1:62340 disconnected.[/info]
+2026-04-25 13:46:32,937 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:62340[/info]
+2026-04-25 13:46:34,085 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:62271[/info]
+2026-04-25 13:46:34,093 - optimized_backend - INFO - [info]Client 127.0.0.1:62271 disconnected.[/info]
+2026-04-25 13:46:34,094 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:62271[/info]
+2026-04-25 13:46:35,234 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:61257[/info]
+2026-04-25 13:46:35,241 - optimized_backend - INFO - [info]Client 127.0.0.1:61257 disconnected.[/info]
+2026-04-25 13:46:35,244 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:61257[/info]
+2026-04-25 13:46:36,338 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:52635[/info]
+2026-04-25 13:46:36,345 - optimized_backend - INFO - [info]Client 127.0.0.1:52635 disconnected.[/info]
+2026-04-25 13:46:36,347 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:52635[/info]
+2026-04-25 13:49:52,208 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:53261[/info]
+2026-04-25 13:49:52,215 - optimized_backend - INFO - [info]Client 127.0.0.1:53261 disconnected.[/info]
+2026-04-25 13:49:52,218 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:53261[/info]
+2026-04-25 13:49:53,299 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:65153[/info]
+2026-04-25 13:49:53,306 - optimized_backend - INFO - [info]Client 127.0.0.1:65153 disconnected.[/info]
+2026-04-25 13:49:53,309 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:65153[/info]
+2026-04-25 13:49:54,394 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:62884[/info]
+2026-04-25 13:49:54,400 - optimized_backend - INFO - [info]Client 127.0.0.1:62884 disconnected.[/info]
+2026-04-25 13:49:54,402 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:62884[/info]
+2026-04-25 13:49:55,451 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:53282[/info]
+2026-04-25 13:49:55,457 - optimized_backend - INFO - [info]Client 127.0.0.1:53282 disconnected.[/info]
+2026-04-25 13:49:55,459 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:53282[/info]
+2026-04-25 13:49:56,511 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:61051[/info]
+2026-04-25 13:49:56,519 - optimized_backend - INFO - [info]Client 127.0.0.1:61051 disconnected.[/info]
+2026-04-25 13:49:56,520 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:61051[/info]
+2026-04-25 13:49:57,603 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:50410[/info]
+2026-04-25 13:49:57,611 - optimized_backend - INFO - [info]Client 127.0.0.1:50410 disconnected.[/info]
+2026-04-25 13:49:57,613 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:50410[/info]
+2026-04-25 13:52:41,057 - optimized_backend - INFO - [realtime]📹 Starting simple realtime sign language server...[/realtime]
+2026-04-25 13:52:41,060 - optimized_backend - INFO - [info]Device: cpu[/info]
+2026-04-25 13:53:27,889 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:53450[/info]
+2026-04-25 13:53:28,020 - optimized_backend - ERROR - [error]Unexpected error [127.0.0.1:53450]: autocast.__init__() got an unexpected keyword argument 'device_type'[/error]
+Traceback (most recent call last):
+  File "C:\D\SignDETR\backend\realtime_optimized.py", line 208, in websocket_endpoint
+    detections = await asyncio.to_thread(infer_single_frame, tensor)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\FPT\AppData\Local\Programs\Python\Python313\Lib\asyncio\threads.py", line 25, in to_thread
+    return await loop.run_in_executor(None, func_call)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\FPT\AppData\Local\Programs\Python\Python313\Lib\concurrent\futures\thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "C:\D\SignDETR\backend\realtime_optimized.py", line 92, in infer_single_frame
+    with torch.no_grad(), amp.autocast(
+                          ~~~~~~~~~~~~^
+        device_type="cuda",
+        ^^^^^^^^^^^^^^^^^^^
+        enabled=(CFG.use_fp16 and DEVICE.type == "cuda"),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        dtype=torch.float16,
+        ^^^^^^^^^^^^^^^^^^^^
+    ):
+    ^
+TypeError: autocast.__init__() got an unexpected keyword argument 'device_type'
+2026-04-25 13:53:28,139 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:53450[/info]
+2026-04-25 13:53:30,459 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:51759[/info]
+2026-04-25 13:53:30,540 - optimized_backend - ERROR - [error]Unexpected error [127.0.0.1:51759]: autocast.__init__() got an unexpected keyword argument 'device_type'[/error]
+Traceback (most recent call last):
+  File "C:\D\SignDETR\backend\realtime_optimized.py", line 208, in websocket_endpoint
+    detections = await asyncio.to_thread(infer_single_frame, tensor)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\FPT\AppData\Local\Programs\Python\Python313\Lib\asyncio\threads.py", line 25, in to_thread
+    return await loop.run_in_executor(None, func_call)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\FPT\AppData\Local\Programs\Python\Python313\Lib\concurrent\futures\thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "C:\D\SignDETR\backend\realtime_optimized.py", line 92, in infer_single_frame
+    with torch.no_grad(), amp.autocast(
+                          ~~~~~~~~~~~~^
+        device_type="cuda",
+        ^^^^^^^^^^^^^^^^^^^
+        enabled=(CFG.use_fp16 and DEVICE.type == "cuda"),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        dtype=torch.float16,
+        ^^^^^^^^^^^^^^^^^^^^
+    ):
+    ^
+TypeError: autocast.__init__() got an unexpected keyword argument 'device_type'
+2026-04-25 13:53:30,589 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:51759[/info]
+2026-04-25 13:53:32,903 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:49165[/info]
+2026-04-25 13:53:32,982 - optimized_backend - ERROR - [error]Unexpected error [127.0.0.1:49165]: autocast.__init__() got an unexpected keyword argument 'device_type'[/error]
+Traceback (most recent call last):
+  File "C:\D\SignDETR\backend\realtime_optimized.py", line 208, in websocket_endpoint
+    detections = await asyncio.to_thread(infer_single_frame, tensor)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\FPT\AppData\Local\Programs\Python\Python313\Lib\asyncio\threads.py", line 25, in to_thread
+    return await loop.run_in_executor(None, func_call)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\FPT\AppData\Local\Programs\Python\Python313\Lib\concurrent\futures\thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "C:\D\SignDETR\backend\realtime_optimized.py", line 92, in infer_single_frame
+    with torch.no_grad(), amp.autocast(
+                          ~~~~~~~~~~~~^
+        device_type="cuda",
+        ^^^^^^^^^^^^^^^^^^^
+        enabled=(CFG.use_fp16 and DEVICE.type == "cuda"),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        dtype=torch.float16,
+        ^^^^^^^^^^^^^^^^^^^^
+    ):
+    ^
+TypeError: autocast.__init__() got an unexpected keyword argument 'device_type'
+2026-04-25 13:53:33,032 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:49165[/info]
+2026-04-25 13:53:35,354 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:50708[/info]
+2026-04-25 13:53:35,430 - optimized_backend - ERROR - [error]Unexpected error [127.0.0.1:50708]: autocast.__init__() got an unexpected keyword argument 'device_type'[/error]
+Traceback (most recent call last):
+  File "C:\D\SignDETR\backend\realtime_optimized.py", line 208, in websocket_endpoint
+    detections = await asyncio.to_thread(infer_single_frame, tensor)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\FPT\AppData\Local\Programs\Python\Python313\Lib\asyncio\threads.py", line 25, in to_thread
+    return await loop.run_in_executor(None, func_call)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\FPT\AppData\Local\Programs\Python\Python313\Lib\concurrent\futures\thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "C:\D\SignDETR\backend\realtime_optimized.py", line 92, in infer_single_frame
+    with torch.no_grad(), amp.autocast(
+                          ~~~~~~~~~~~~^
+        device_type="cuda",
+        ^^^^^^^^^^^^^^^^^^^
+        enabled=(CFG.use_fp16 and DEVICE.type == "cuda"),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        dtype=torch.float16,
+        ^^^^^^^^^^^^^^^^^^^^
+    ):
+    ^
+TypeError: autocast.__init__() got an unexpected keyword argument 'device_type'
+2026-04-25 13:53:35,481 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:50708[/info]
+2026-04-25 13:53:37,794 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:60343[/info]
+2026-04-25 13:53:37,869 - optimized_backend - ERROR - [error]Unexpected error [127.0.0.1:60343]: autocast.__init__() got an unexpected keyword argument 'device_type'[/error]
+Traceback (most recent call last):
+  File "C:\D\SignDETR\backend\realtime_optimized.py", line 208, in websocket_endpoint
+    detections = await asyncio.to_thread(infer_single_frame, tensor)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\FPT\AppData\Local\Programs\Python\Python313\Lib\asyncio\threads.py", line 25, in to_thread
+    return await loop.run_in_executor(None, func_call)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\FPT\AppData\Local\Programs\Python\Python313\Lib\concurrent\futures\thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "C:\D\SignDETR\backend\realtime_optimized.py", line 92, in infer_single_frame
+    with torch.no_grad(), amp.autocast(
+                          ~~~~~~~~~~~~^
+        device_type="cuda",
+        ^^^^^^^^^^^^^^^^^^^
+        enabled=(CFG.use_fp16 and DEVICE.type == "cuda"),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        dtype=torch.float16,
+        ^^^^^^^^^^^^^^^^^^^^
+    ):
+    ^
+TypeError: autocast.__init__() got an unexpected keyword argument 'device_type'
+2026-04-25 13:53:37,918 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:60343[/info]
+2026-04-25 13:53:44,932 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:52307[/info]
+2026-04-25 13:53:45,010 - optimized_backend - ERROR - [error]Unexpected error [127.0.0.1:52307]: autocast.__init__() got an unexpected keyword argument 'device_type'[/error]
+Traceback (most recent call last):
+  File "C:\D\SignDETR\backend\realtime_optimized.py", line 208, in websocket_endpoint
+    detections = await asyncio.to_thread(infer_single_frame, tensor)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\FPT\AppData\Local\Programs\Python\Python313\Lib\asyncio\threads.py", line 25, in to_thread
+    return await loop.run_in_executor(None, func_call)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\FPT\AppData\Local\Programs\Python\Python313\Lib\concurrent\futures\thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "C:\D\SignDETR\backend\realtime_optimized.py", line 92, in infer_single_frame
+    with torch.no_grad(), amp.autocast(
+                          ~~~~~~~~~~~~^
+        device_type="cuda",
+        ^^^^^^^^^^^^^^^^^^^
+        enabled=(CFG.use_fp16 and DEVICE.type == "cuda"),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        dtype=torch.float16,
+        ^^^^^^^^^^^^^^^^^^^^
+    ):
+    ^
+TypeError: autocast.__init__() got an unexpected keyword argument 'device_type'
+2026-04-25 13:53:45,062 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:52307[/info]
+2026-04-25 14:00:04,338 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:49857[/info]
+2026-04-25 14:00:04,416 - optimized_backend - ERROR - [error]Unexpected error [127.0.0.1:49857]: autocast.__init__() got an unexpected keyword argument 'device_type'[/error]
+Traceback (most recent call last):
+  File "C:\D\SignDETR\backend\realtime_optimized.py", line 208, in websocket_endpoint
+    detections = await asyncio.to_thread(infer_single_frame, tensor)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\FPT\AppData\Local\Programs\Python\Python313\Lib\asyncio\threads.py", line 25, in to_thread
+    return await loop.run_in_executor(None, func_call)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\FPT\AppData\Local\Programs\Python\Python313\Lib\concurrent\futures\thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "C:\D\SignDETR\backend\realtime_optimized.py", line 92, in infer_single_frame
+    with torch.no_grad(), amp.autocast(
+                          ~~~~~~~~~~~~^
+        device_type="cuda",
+        ^^^^^^^^^^^^^^^^^^^
+        enabled=(CFG.use_fp16 and DEVICE.type == "cuda"),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        dtype=torch.float16,
+        ^^^^^^^^^^^^^^^^^^^^
+    ):
+    ^
+TypeError: autocast.__init__() got an unexpected keyword argument 'device_type'
+2026-04-25 14:00:04,472 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:49857[/info]
+2026-04-25 14:06:21,908 - optimized_backend - INFO - [info]Server shutdown complete.[/info]
+2026-04-25 14:06:32,504 - optimized_backend - INFO - [realtime]📹 Starting simple realtime sign language server...[/realtime]
+2026-04-25 14:06:32,508 - optimized_backend - INFO - [info]Device: cpu[/info]
+2026-04-25 14:06:58,169 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:65069[/info]
+2026-04-25 14:06:58,202 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:51890[/info]
+2026-04-25 14:07:25,311 - optimized_backend - INFO - [info]Client 127.0.0.1:65069 disconnected.[/info]
+2026-04-25 14:07:25,313 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:65069[/info]
+2026-04-25 14:07:27,105 - optimized_backend - INFO - [info]Client 127.0.0.1:51890 disconnected.[/info]
+2026-04-25 14:07:27,107 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:51890[/info]
+2026-04-25 16:16:23,475 - optimized_backend - INFO - [realtime]📹 Starting simple realtime sign language server...[/realtime]
+2026-04-25 16:16:23,478 - optimized_backend - INFO - [info]Device: cpu[/info]
+2026-04-25 16:16:45,707 - optimized_backend - INFO - [info]Client connected: 127.0.0.1:55938[/info]
+2026-04-25 16:17:30,515 - optimized_backend - INFO - [info]Client 127.0.0.1:55938 disconnected.[/info]
+2026-04-25 16:17:30,517 - optimized_backend - INFO - [info]Connection closed: 127.0.0.1:55938[/info]
