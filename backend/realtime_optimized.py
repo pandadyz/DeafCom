@@ -11,6 +11,7 @@ import asyncio
 import base64
 import sys
 import time
+from collections import Counter, deque
 from contextlib import asynccontextmanager
 from dataclasses import dataclass
 from typing import Optional
@@ -42,6 +43,9 @@ class Config:
     max_client_fps: int = 15
     ws_receive_timeout: float = 30.0
     use_fp16: bool = False
+    stabilization_window: int = 12
+    stabilization_ratio: float = 0.65
+    min_stable_votes: int = 3
 
 
 CFG = Config()
@@ -120,6 +124,39 @@ def infer_single_frame(tensor: torch.Tensor) -> list[dict]:
     return detections
 
 
+def pick_candidate_word(detections: list[dict]) -> Optional[str]:
+    if not detections:
+        return None
+    best = max(detections, key=lambda item: item["confidence"])
+    return str(best["class"])
+
+
+def get_stable_word(window: deque[Optional[str]]) -> Optional[str]:
+    observed = [word for word in window if word]
+    if not observed:
+        return None
+    word, count = Counter(observed).most_common(1)[0]
+    if count < CFG.min_stable_votes:
+        return None
+    if (count / len(observed)) < CFG.stabilization_ratio:
+        return None
+    return word
+
+
+def get_candidate_signs(detections: list[dict], limit: int = 3) -> list[str]:
+    if not detections:
+        return []
+    sorted_detections = sorted(detections, key=lambda item: item["confidence"], reverse=True)
+    candidates: list[str] = []
+    for det in sorted_detections:
+        sign = str(det["class"])
+        if sign not in candidates:
+            candidates.append(sign)
+        if len(candidates) >= limit:
+            break
+    return candidates
+
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     logger.print_banner()
@@ -175,6 +212,7 @@ async def websocket_endpoint(websocket: WebSocket):
     fps_window_started = time.monotonic()
     processed_frames = 0
     realtime_fps = 0.0
+    word_window: deque[Optional[str]] = deque(maxlen=CFG.stabilization_window)
 
     try:
         while True:
@@ -206,6 +244,10 @@ async def websocket_endpoint(websocket: WebSocket):
             infer_start = time.perf_counter()
             detections = await asyncio.to_thread(infer_single_frame, tensor)
             latency_ms = round((time.perf_counter() - infer_start) * 1000, 2)
+            candidate_word = pick_candidate_word(detections)
+            word_window.append(candidate_word)
+            stable_word = get_stable_word(word_window)
+            candidate_signs = get_candidate_signs(detections)
 
             processed_frames += 1
             elapsed = time.monotonic() - fps_window_started
@@ -218,8 +260,8 @@ async def websocket_endpoint(websocket: WebSocket):
                 {
                     "error": None,
                     "event": "detecting",
-                    "word": None,
-                    "sentence": None,
+                    "stable_word": stable_word,
+                    "candidate_signs": candidate_signs,
                     "detections": detections,
                     "server_fps": round(realtime_fps, 2),
                     "latency_ms": latency_ms,
