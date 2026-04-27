@@ -8,16 +8,22 @@ import ConnectionStatus from "@/components/ConnectionStatus";
 interface DetectionData {
   detections: any[];
   fps: number;
+  stableWord?: string | null;
+  candidateSigns?: string[];
 }
 
 export default function Home() {
   const [detections, setDetections] = useState<any[]>([]);
   const [isConnected, setIsConnected] = useState(false);
   const [fps, setFps] = useState(0);
+  const [stableWord, setStableWord] = useState<string | null>(null);
+  const [candidateSigns, setCandidateSigns] = useState<string[]>([]);
 
   const handleDetection = (data: DetectionData) => {
     setDetections(Array.isArray(data.detections) ? data.detections : []);
     setFps(typeof data.fps === "number" ? data.fps : 0);
+    setStableWord(data.stableWord ?? null);
+    setCandidateSigns(Array.isArray(data.candidateSigns) ? data.candidateSigns : []);
   };
 
   return (
@@ -46,7 +52,12 @@ export default function Home() {
             <h2 className="text-2xl font-semibold mb-4 text-gray-800 dark:text-white">
               Detection Results
             </h2>
-            <DetectionResults detections={detections} fps={fps} />
+            <DetectionResults
+              detections={detections}
+              fps={fps}
+              stableWord={stableWord}
+              candidateSigns={candidateSigns}
+            />
           </div>
         </div>
       </div>

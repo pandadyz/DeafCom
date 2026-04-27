@@ -18,8 +18,8 @@ interface CameraFeedProps {
     detections: any[];
     fps: number;
     event?: string;
-    word?: string | null;
-    sentence?: string[] | null;
+    stableWord?: string | null;
+    candidateSigns?: string[];
   }) => void;
   onConnectionChange: (isConnected: boolean) => void;
 }
@@ -144,8 +144,8 @@ export default function CameraFeed({ onDetection, onConnectionChange }: CameraFe
           detections,
           fps: typeof msg?.server_fps === "number" ? msg.server_fps : SEND_FPS,
           event: msg?.event,
-          word: msg?.word,
-          sentence: msg?.sentence,
+          stableWord: msg?.stable_word,
+          candidateSigns: Array.isArray(msg?.candidate_signs) ? msg.candidate_signs : [],
         });
       } catch (err) {
         console.error("Error parsing WebSocket message:", err);
