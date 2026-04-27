@@ -1,5 +1,8 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
+
+// ─── Types ────────────────────────────────────────────────────────────────────
 interface Detection {
   class: string;
   confidence: number;
@@ -7,11 +10,50 @@ interface Detection {
 }
 
 interface DetectionResultsProps {
-  detections: Detection[];
+  detections: Detection[] | null | undefined;
   fps: number;
+  // Props mới từ WordBuffer backend
+  event?: string;
+  word?: string | null;
+  sentence?: string[] | null;
 }
 
-export default function DetectionResults({ detections, fps }: DetectionResultsProps) {
+// ─── Component ────────────────────────────────────────────────────────────────
+export default function DetectionResults({
+  detections: detectionsProp,
+  fps,
+  event,
+  word,
+  sentence,
+}: DetectionResultsProps) {
+  // Guard: đảm bảo luôn là array dù backend gửi format bất kỳ
+  const detections: Detection[] = Array.isArray(detectionsProp) ? detectionsProp : [];
+  // Câu đang ghép dần (tích luỹ word_confirmed)
+  const [builtSentence, setBuiltSentence] = useState<string[]>([]);
+  // Từ vừa xác nhận để highlight thoáng qua
+  const [flashWord, setFlashWord] = useState<string | null>(null);
+  // Lịch sử các câu hoàn chỉnh
+  const [history, setHistory] = useState<string[]>([]);
+  const flashTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  // Xử lý event từ backend
+  useEffect(() => {
+    if (!event || event === "detecting") return;
+
+    if (event === "word_confirmed" && word) {
+      setBuiltSentence((prev) => [...prev, word]);
+      setFlashWord(word);
+      if (flashTimer.current) clearTimeout(flashTimer.current);
+      flashTimer.current = setTimeout(() => setFlashWord(null), 1000);
+    }
+
+    if (event === "sentence_ready" && sentence && sentence.length > 0) {
+      setHistory((prev) => [sentence.join(" "), ...prev].slice(0, 8));
+      setBuiltSentence([]);
+    }
+  }, [event, word, sentence]);
+
+  // ── Helpers giống code gốc ────────────────────────────────────────────────
   const getConfidenceColor = (confidence: number) => {
     if (confidence >= 0.9) return "text-green-600";
     if (confidence >= 0.8) return "text-yellow-600";
@@ -26,6 +68,87 @@ export default function DetectionResults({ detections, fps }: DetectionResultsPr
 
   return (
     <div className="space-y-4">
+
+      {/* ── PHẦN MỚI: Câu đang ghép ─────────────────────────────────────── */}
+      <div className="rounded-lg border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 p-4">
+        <div className="flex items-center justify-between mb-2">
+          <h4 className="text-sm font-semibold text-gray-700 dark:text-gray-300">
+            Câu đang nhận
+          </h4>
+          {builtSentence.length > 0 && (
+            <button
+              onClick={() => setBuiltSentence([])}
+              className="text-xs text-gray-400 hover:text-red-400 transition-colors"
+            >
+              Xoá
+            </button>
+          )}
+        </div>
+
+        {builtSentence.length === 0 ? (
+          <p className="text-sm text-gray-400 italic">Hãy thực hiện ký hiệu...</p>
+        ) : (
+          <div className="flex flex-wrap gap-2">
+            {builtSentence.map((w, i) => (
+              <span
+                key={i}
+                className={`px-3 py-1 rounded-full text-sm font-semibold transition-all duration-300 ${
+                  w === flashWord && i === builtSentence.length - 1
+                    ? "bg-green-500 text-white scale-110 shadow-md"
+                    : "bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200"
+                }`}
+              >
+                {w}
+              </span>
+            ))}
+          </div>
+        )}
+      </div>
+
+      {/* ── PHẦN MỚI: Câu hoàn chỉnh (sentence_ready) ───────────────────── */}
+      {event === "sentence_ready" && sentence && sentence.length > 0 && (
+        <div className="rounded-lg bg-blue-50 dark:bg-blue-900/30 border border-blue-300 dark:border-blue-700 p-3">
+          <p className="text-xs text-blue-500 font-semibold mb-1">Câu hoàn chỉnh</p>
+          <p className="text-xl font-bold text-blue-800 dark:text-blue-200">
+            {sentence.join(" ")}
+          </p>
+        </div>
+      )}
+
+      {/* ── PHẦN MỚI: Lịch sử câu ───────────────────────────────────────── */}
+      {history.length > 0 && (
+        <div className="rounded-lg border border-gray-200 dark:border-gray-700 p-3">
+          <div className="flex items-center justify-between mb-2">
+            <h4 className="text-xs font-semibold uppercase tracking-widest text-gray-400">
+              Lịch sử
+            </h4>
+            <button
+              onClick={() => setHistory([])}
+              className="text-xs text-gray-400 hover:text-red-400 transition-colors"
+            >
+              Xoá
+            </button>
+          </div>
+          <div className="space-y-1 max-h-32 overflow-y-auto">
+            {history.map((s, i) => (
+              <div
+                key={i}
+                className={`px-2 py-1 rounded text-sm ${
+                  i === 0
+                    ? "bg-blue-50 dark:bg-blue-900/40 text-blue-800 dark:text-blue-200 font-medium"
+                    : "text-gray-500 dark:text-gray-400"
+                }`}
+              >
+                {s}
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* ════════════════════════════════════════════════════════════════════
+          PHẦN GỐC — giữ nguyên hoàn toàn từ code ban đầu
+          ════════════════════════════════════════════════════════════════════ */}
       <div className="flex items-center justify-between">
         <h3 className="text-lg font-semibold text-gray-800 dark:text-white">
           Live Detection
@@ -82,7 +205,7 @@ export default function DetectionResults({ detections, fps }: DetectionResultsPr
                     {(detection.confidence * 100).toFixed(1)}% confidence
                   </p>
                 </div>
-                
+
                 <div className="text-right">
                   <div className="text-xs text-gray-500 dark:text-gray-400 mb-1">
                     Bounding Box
@@ -110,6 +233,7 @@ export default function DetectionResults({ detections, fps }: DetectionResultsPr
           <div>Model: DETR (Detection Transformer)</div>
         </div>
       </div>
+
     </div>
   );
 }
