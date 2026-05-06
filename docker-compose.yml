@@ -1,0 +1,26 @@
+services:
+  db:
+    image: postgres:15
+    container_name: postgres_chat
+    restart: always
+    environment:
+      POSTGRES_USER: pandadyz
+      POSTGRES_PASSWORD: 123123hung
+      POSTGRES_DB: chat_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin_chat
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "8080:80"
+
+volumes:
+  postgres_data:

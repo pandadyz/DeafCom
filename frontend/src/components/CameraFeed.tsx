@@ -216,6 +216,41 @@ export default function CameraFeed({ onDetection, onConnectionChange }: CameraFe
 
   const stopCamera = useCallback(() => {
     startRequestIdRef.current += 1;
+    // Không tăng wsSessionIdRef.current để giữ kết nối WebSocket
+    // wsSessionIdRef.current += 1;
+    shouldReconnectRef.current = true; // Giữ reconnect cho lần sau
+    stopSendingFrames();
+
+    // Không đóng WebSocket khi chỉ stop camera
+    // if (wsRef.current) {
+    //   wsRef.current.close();
+    //   wsRef.current = null;
+    // }
+
+    if (reconnectTimerRef.current) {
+      clearTimeout(reconnectTimerRef.current);
+      reconnectTimerRef.current = null;
+    }
+
+    if (videoRef.current?.srcObject) {
+      const stream = videoRef.current.srcObject as MediaStream;
+      stream.getTracks().forEach((t) => t.stop());
+      videoRef.current.srcObject = null;
+    }
+
+    setIsStreaming(false);
+    // Không báo mất kết nối backend khi chỉ stop camera
+    // onConnectionChangeRef.current(false);
+
+    const overlay = overlayRef.current;
+    if (overlay) {
+      const ctx = overlay.getContext("2d");
+      ctx?.clearRect(0, 0, overlay.width, overlay.height);
+    }
+  }, [stopSendingFrames]);
+
+  const disconnect = useCallback(() => {
+    startRequestIdRef.current += 1;
     wsSessionIdRef.current += 1;
     shouldReconnectRef.current = false;
     stopSendingFrames();
@@ -249,9 +284,9 @@ export default function CameraFeed({ onDetection, onConnectionChange }: CameraFe
   useEffect(() => {
     startCamera();
     return () => {
-      stopCamera();
+      disconnect();
     };
-  }, [startCamera, stopCamera]);
+  }, [startCamera, disconnect]);
 
   return (
     <div className="relative">

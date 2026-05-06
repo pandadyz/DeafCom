@@ -13,6 +13,7 @@ interface DetectionResultsProps {
   fps: number;
   stableWord?: string | null;
   candidateSigns?: string[];
+  onAddSign?: (sign: string) => void;
 }
 
 export default function DetectionResults({
@@ -20,6 +21,7 @@ export default function DetectionResults({
   fps,
   stableWord,
   candidateSigns,
+  onAddSign,
 }: DetectionResultsProps) {
   const detections: Detection[] = Array.isArray(detectionsProp) ? detectionsProp : [];
   const [builtSentence, setBuiltSentence] = useState<string[]>([]);
@@ -73,6 +75,7 @@ export default function DetectionResults({
                 key={`${sign}-${idx}`}
                 onClick={() => {
                   setBuiltSentence((prev) => [...prev, sign]);
+                  onAddSign?.(sign);
                   setDetectedSigns([]);
                 }}
                 className="px-3 py-1 rounded-full text-sm font-semibold bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 hover:bg-blue-200 dark:hover:bg-blue-800 transition-colors"

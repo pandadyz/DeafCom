@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import CameraFeed from "@/components/CameraFeed";
+import ChatPanel from "@/components/ChatPanel";
 import DetectionResults from "@/components/DetectionResults";
 import ConnectionStatus from "@/components/ConnectionStatus";
 
@@ -18,6 +19,7 @@ export default function Home() {
   const [fps, setFps] = useState(0);
   const [stableWord, setStableWord] = useState<string | null>(null);
   const [candidateSigns, setCandidateSigns] = useState<string[]>([]);
+  const [queuedSign, setQueuedSign] = useState<string | null>(null);
 
   const handleDetection = (data: DetectionData) => {
     setDetections(Array.isArray(data.detections) ? data.detections : []);
@@ -57,8 +59,18 @@ export default function Home() {
               fps={fps}
               stableWord={stableWord}
               candidateSigns={candidateSigns}
+              onAddSign={setQueuedSign}
             />
           </div>
+        </div>
+
+        <div className="mt-8 bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
+          <ChatPanel
+            stableWord={stableWord}
+            suggestedSigns={candidateSigns}
+            queuedSign={queuedSign}
+            onQueuedSignConsumed={() => setQueuedSign(null)}
+          />
         </div>
       </div>
     </div>
