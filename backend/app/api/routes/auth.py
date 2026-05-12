@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Depends
-from sqlmodel import Session
+from sqlmodel import Session, select
 
 from app.api.deps.auth import get_current_user
 from app.db.session import get_session
@@ -29,4 +29,14 @@ async def login(
 @router.get("/me", response_model=UserPublic)
 async def me(current_user: User = Depends(get_current_user)) -> UserPublic:
     return UserPublic.model_validate(current_user)
+
+
+@router.get("/users", response_model=list[UserPublic])
+async def get_users(
+    session: Session = Depends(get_session),
+    current_user: User = Depends(get_current_user)
+) -> list[UserPublic]:
+    statement = select(User).where(User.id != current_user.id).order_by(User.username)
+    users = session.exec(statement).all()
+    return [UserPublic.model_validate(user) for user in users]
 

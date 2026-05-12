@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Script khởi tạo database schema cho chat."""
 from database import create_db_and_tables
-from models import Conversation, Message, MessageEditHistory, User
+from models import Conversation, FriendRequest, Friendship, Message, MessageEditHistory, User
 
 def main():
     print("Đang tạo database và chat tables...")

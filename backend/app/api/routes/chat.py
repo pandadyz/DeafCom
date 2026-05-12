@@ -7,6 +7,7 @@ from sqlmodel import Session
 from app.api.deps.auth import get_current_user
 from app.db.session import get_session
 from app.schemas.chat import (
+    ConversationListResponse,
     EditMessageRequest,
     MarkReadRequest,
     MarkReadResponse,
@@ -22,9 +23,19 @@ from app.services.chat_service import (
     recall_message,
     send_message,
 )
+from app.services.conversation_service import get_user_conversations
 from models import User
 
 router = APIRouter(prefix="/chat", tags=["chat"])
+
+
+@router.get("/conversations", response_model=ConversationListResponse)
+async def get_conversations(
+    current_user: User = Depends(get_current_user),
+    session: Session = Depends(get_session),
+) -> ConversationListResponse:
+    conversations = get_user_conversations(session=session, current_user_id=current_user.id)
+    return ConversationListResponse(conversations=conversations)
 
 
 @router.post("/messages", response_model=MessagePublic)

@@ -38,7 +38,7 @@ class Config:
     checkpoint: str = "checkpoints/99_model.pt"
     num_classes: int = 3
     input_size: int = 224
-    conf_threshold: float = 0.80
+    conf_threshold: float = 0.85
     max_payload_bytes: int = 5 * 1024 * 1024
     max_client_fps: int = 15
     ws_receive_timeout: float = 30.0
@@ -93,35 +93,45 @@ def decode_and_preprocess(data: str) -> Optional[torch.Tensor]:
 def infer_single_frame(tensor: torch.Tensor) -> list[dict]:
     tensor = tensor.to(DEVICE, non_blocking=True)
 
-    with torch.no_grad(), amp.autocast(
-        enabled=(CFG.use_fp16 and DEVICE.type == "cuda"),
-        dtype=torch.float16,
-    ):
-        output = state.model(tensor)
-
-    probs = output["pred_logits"].float().softmax(-1)[:, :, :-1]
-    max_probs, max_classes = probs.max(-1)
-    keep_mask = max_probs[0] > CFG.conf_threshold
-
-    detections: list[dict] = []
-    if keep_mask.any():
-        bboxes = rescale_bboxes(
-            output["pred_boxes"][0][keep_mask],
-            (CFG.input_size, CFG.input_size),
-        )
-        for cls, prob, bbox in zip(
-            max_classes[0][keep_mask],
-            max_probs[0][keep_mask],
-            bboxes,
+    try:
+        with torch.no_grad(), amp.autocast(
+            enabled=(CFG.use_fp16 and DEVICE.type == "cuda"),
+            dtype=torch.float16,
         ):
-            detections.append(
-                {
-                    "class": state.classes[cls.item()],
-                    "confidence": round(float(prob.item()), 4),
-                    "bbox": [round(float(v), 2) for v in bbox.tolist()],
-                }
+            output = state.model(tensor)
+
+        probs = output["pred_logits"].float().softmax(-1)[:, :, :-1]
+        max_probs, max_classes = probs.max(-1)
+        
+        # Debug logging for confidence scores
+        if max_probs[0].max() > 0.5:  # Only log if there's something significant
+            logger.debug(f"Max confidence: {max_probs[0].max().item():.4f}")
+            logger.debug(f"Threshold: {CFG.conf_threshold}")
+        
+        keep_mask = max_probs[0] > CFG.conf_threshold
+
+        detections: list[dict] = []
+        if keep_mask.any():
+            bboxes = rescale_bboxes(
+                output["pred_boxes"][0][keep_mask],
+                (CFG.input_size, CFG.input_size),
             )
-    return detections
+            for cls, prob, bbox in zip(
+                max_classes[0][keep_mask],
+                max_probs[0][keep_mask],
+                bboxes,
+            ):
+                detections.append(
+                    {
+                        "class": state.classes[cls.item()],
+                        "confidence": round(float(prob.item()), 4),
+                        "bbox": [round(float(v), 2) for v in bbox.tolist()],
+                    }
+                )
+        return detections
+    except Exception as e:
+        logger.error(f"Model inference failed: {e}")
+        return []
 
 
 def pick_candidate_word(detections: list[dict]) -> Optional[str]:

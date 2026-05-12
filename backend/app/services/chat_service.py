@@ -5,7 +5,7 @@ from fastapi import HTTPException, status
 from sqlalchemy import and_, or_
 from sqlmodel import Session, select
 
-from models import Conversation, Message, MessageEditHistory, MessageStatus, MessageType, User
+from models import Conversation, Friendship, Message, MessageEditHistory, MessageStatus, MessageType, User
 
 MESSAGE_MAX_LEN = 2000
 
@@ -35,11 +35,25 @@ def _get_user_or_404(session: Session, user_id: UUID) -> User:
     return user
 
 
+def _check_friendship(session: Session, user_a_id: UUID, user_b_id: UUID) -> bool:
+    statement = select(Friendship).where(
+        or_(
+            and_(Friendship.user_a_id == user_a_id, Friendship.user_b_id == user_b_id),
+            and_(Friendship.user_a_id == user_b_id, Friendship.user_b_id == user_a_id),
+        )
+    )
+    return session.exec(statement).first() is not None
+
+
 def get_or_create_conversation(session: Session, current_user_id: UUID, peer_id: UUID) -> Conversation:
     if current_user_id == peer_id:
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="cannot_chat_with_self")
 
     _get_user_or_404(session, peer_id)
+
+    # Check if users are friends
+    if not _check_friendship(session, current_user_id, peer_id):
+        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="must_be_friends_to_chat")
 
     key = _pair_key(current_user_id, peer_id)
     statement = select(Conversation).where(Conversation.pair_key == key)

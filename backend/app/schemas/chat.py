@@ -54,3 +54,22 @@ class MessageListResponse(BaseModel):
     next_cursor: datetime | None
     has_more: bool
 
+
+class ConversationFriend(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+    
+    id: UUID
+    username: str
+    created_at: datetime
+
+
+class ConversationItem(BaseModel):
+    conversation_id: UUID
+    friend: ConversationFriend
+    last_message_at: datetime
+    created_at: datetime
+
+
+class ConversationListResponse(BaseModel):
+    conversations: list[ConversationItem]
+
