@@ -1,12 +1,12 @@
 import cv2
 import torch
 from torch import load
-from model import DETR
+from .model import DETR
 import albumentations as A
-from utils.boxes import rescale_bboxes
-from utils.setup import get_classes, get_colors
-from utils.logger import get_logger
-from utils.rich_handlers import DetectionHandler, create_detection_live_display
+from .utils.boxes import rescale_bboxes
+from .utils.setup import get_classes, get_colors
+from .utils.logger import get_logger
+from .utils.rich_handlers import DetectionHandler, create_detection_live_display
 import sys
 import time 
 
