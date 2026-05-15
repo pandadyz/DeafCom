@@ -1,8 +1,8 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState, forwardRef, useImperativeHandle } from "react";
 
-const WS_URL = process.env.NEXT_PUBLIC_WS_URL ?? "ws://localhost:8000/ws";
+const WS_URL = process.env.NEXT_PUBLIC_WS_URL ?? "ws://localhost:8000/ws/sign";
 const SEND_FPS = 15;
 const SEND_INTERVAL_MS = 1000 / SEND_FPS;
 const FRAME_SIZE = 224;
@@ -11,6 +11,13 @@ interface Detection {
   class: string;
   confidence: number;
   bbox: [number, number, number, number];
+}
+
+export interface CameraFeedRef {
+  startCamera: () => void;
+  stopCamera: () => void;
+  disconnect: () => void;
+  isStreaming: boolean;
 }
 
 interface CameraFeedProps {
@@ -22,9 +29,11 @@ interface CameraFeedProps {
     candidateSigns?: string[];
   }) => void;
   onConnectionChange: (isConnected: boolean) => void;
+  autoStart?: boolean;
 }
 
-export default function CameraFeed({ onDetection, onConnectionChange }: CameraFeedProps) {
+const CameraFeed = forwardRef<CameraFeedRef, CameraFeedProps>(
+  function CameraFeed({ onDetection, onConnectionChange, autoStart = false }, ref) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const overlayRef = useRef<HTMLCanvasElement>(null);
@@ -281,12 +290,21 @@ export default function CameraFeed({ onDetection, onConnectionChange }: CameraFe
     }
   }, [stopSendingFrames]);
 
+  useImperativeHandle(ref, () => ({
+    startCamera,
+    stopCamera,
+    disconnect,
+    get isStreaming() { return isStreaming; }
+  }), [startCamera, stopCamera, disconnect, isStreaming]);
+
   useEffect(() => {
-    startCamera();
+    if (autoStart) {
+      startCamera();
+    }
     return () => {
       disconnect();
     };
-  }, [startCamera, disconnect]);
+  }, [startCamera, disconnect, autoStart]);
 
   return (
     <div className="relative">
@@ -344,4 +362,7 @@ export default function CameraFeed({ onDetection, onConnectionChange }: CameraFe
       <canvas ref={canvasRef} className="hidden" />
     </div>
   );
-}
+  }
+);
+
+export default CameraFeed;
