@@ -1,16 +1,30 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState, forwardRef, useImperativeHandle } from "react";
+import {
+  drawCenterCroppedFrame,
+  LAPTOP_CAMERA_CONSTRAINTS,
+  mapBboxToVideoElement,
+  MODEL_FRAME_SIZE,
+} from "@/lib/cameraFrame";
 
 const WS_URL = process.env.NEXT_PUBLIC_WS_URL ?? "ws://localhost:8000/ws/sign";
 const SEND_FPS = 15;
 const SEND_INTERVAL_MS = 1000 / SEND_FPS;
-const FRAME_SIZE = 224;
+const FRAME_SIZE = MODEL_FRAME_SIZE;
 
 interface Detection {
   class: string;
   confidence: number;
-  bbox: [number, number, number, number];
+  bbox?: [number, number, number, number];
+}
+
+function isValidBbox(bbox: unknown): bbox is [number, number, number, number] {
+  return (
+    Array.isArray(bbox) &&
+    bbox.length === 4 &&
+    bbox.every((value) => typeof value === "number" && Number.isFinite(value))
+  );
 }
 
 export interface CameraFeedRef {
@@ -78,20 +92,40 @@ const CameraFeed = forwardRef<CameraFeedRef, CameraFeedProps>(
     ctx.lineWidth = 2;
     ctx.font = "12px sans-serif";
 
-    const scaleX = width / FRAME_SIZE;
-    const scaleY = height / FRAME_SIZE;
+    const labelLines: string[] = [];
 
     for (const det of detections) {
-      const [x1, y1, x2, y2] = det.bbox;
-      const dx = x1 * scaleX;
-      const dy = y1 * scaleY;
-      const dw = (x2 - x1) * scaleX;
-      const dh = (y2 - y1) * scaleY;
-
-      ctx.strokeRect(dx, dy, dw, dh);
       const label = `${det.class} ${(det.confidence * 100).toFixed(1)}%`;
-      const textY = Math.max(14, dy - 4);
-      ctx.fillText(label, dx + 2, textY);
+
+      if (isValidBbox(det.bbox)) {
+        const mapped = mapBboxToVideoElement(det.bbox, video, FRAME_SIZE);
+        if (!mapped) continue;
+
+        const [x1, y1, x2, y2] = mapped;
+        const dw = x2 - x1;
+        const dh = y2 - y1;
+
+        ctx.strokeRect(x1, y1, dw, dh);
+        const textY = Math.max(14, y1 - 4);
+        ctx.fillText(label, x1 + 2, textY);
+      } else {
+        labelLines.push(label);
+      }
+    }
+
+    if (labelLines.length > 0) {
+      const padding = 10;
+      const lineHeight = 18;
+      const boxHeight = labelLines.length * lineHeight + padding * 2;
+      const boxY = height - boxHeight - 12;
+
+      ctx.fillStyle = "rgba(0, 0, 0, 0.65)";
+      ctx.fillRect(padding, boxY, width - padding * 2, boxHeight);
+      ctx.fillStyle = "#00ff88";
+
+      labelLines.forEach((line, index) => {
+        ctx.fillText(line, padding + 8, boxY + padding + (index + 1) * lineHeight - 4);
+      });
     }
   }, []);
 
@@ -116,7 +150,7 @@ const CameraFeed = forwardRef<CameraFeedRef, CameraFeedProps>(
 
     canvas.width = FRAME_SIZE;
     canvas.height = FRAME_SIZE;
-    ctx.drawImage(video, 0, 0, FRAME_SIZE, FRAME_SIZE);
+    if (!drawCenterCroppedFrame(ctx, video, FRAME_SIZE)) return;
 
     const base64 = canvas.toDataURL("image/jpeg", 0.75).split(",")[1];
     ws.send(base64);
@@ -184,7 +218,7 @@ const CameraFeed = forwardRef<CameraFeedRef, CameraFeedProps>(
 
     try {
       const stream = await navigator.mediaDevices.getUserMedia({
-        video: { width: 640, height: 480 },
+        video: LAPTOP_CAMERA_CONSTRAINTS,
         audio: false,
       });
 
@@ -314,14 +348,13 @@ const CameraFeed = forwardRef<CameraFeedRef, CameraFeedProps>(
         </div>
       )}
 
-      <div className="relative bg-black rounded-lg overflow-hidden">
+      <div className="relative w-full aspect-video bg-black rounded-lg overflow-hidden">
         <video
           ref={videoRef}
           autoPlay
           playsInline
           muted
-          className="w-full h-auto"
-          style={{ maxHeight: "480px" }}
+          className="absolute inset-0 w-full h-full object-cover"
         />
         <canvas
           ref={overlayRef}

@@ -1,3 +1,5 @@
+import { formatSignForDisplay } from '@/components/messenger/signDisplayLabels';
+
 interface SentenceComposerProps {
   composedWords: string[];
   messageDraft: string;
@@ -60,12 +62,12 @@ export default function SentenceComposer({
               key={`${word}-${idx}`}
               className="inline-flex items-center gap-0.5 rounded-full border border-primary/30 bg-primary/12 pl-2.5 pr-1 py-1 text-sm font-medium text-primary"
             >
-              {word}
+              {formatSignForDisplay(word)}
               <button
                 type="button"
                 onClick={() => onRemoveWord(idx)}
                 className="flex h-5 w-5 items-center justify-center rounded-full text-primary/70 transition-colors hover:bg-primary/20 hover:text-primary"
-                aria-label={`Xóa từ ${word}`}
+                aria-label={`Xóa từ ${formatSignForDisplay(word)}`}
               >
                 <span className="material-symbols-outlined text-[14px]">close</span>
               </button>

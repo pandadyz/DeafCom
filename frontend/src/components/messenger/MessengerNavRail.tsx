@@ -11,11 +11,6 @@ export default function MessengerNavRail({ onLogout }: MessengerNavRailProps) {
         </span>
       </div>
       <div className="flex flex-col gap-lg flex-1">
-        <button className="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center text-on-surface hover:bg-surface-variant transition-colors">
-          <span className="material-symbols-outlined" data-weight="fill">
-            chat
-          </span>
-        </button>
         <button className="w-12 h-12 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container transition-colors">
           <span className="material-symbols-outlined">group</span>
         </button>

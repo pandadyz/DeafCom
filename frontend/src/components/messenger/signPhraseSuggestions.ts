@@ -1,21 +1,28 @@
-/** Gợi ý câu tiếng Việt từ nhãn ký hiệu (khớp config backend). */
+import { toCanonicalSignKey } from './signDisplayLabels';
+
+/** Gợi ý câu đơn từ (mã class backend). */
 const SINGLE_SIGN_PHRASES: Record<string, string> = {
-  hello: 'Xin chào!',
-  iloveyou: 'Tôi yêu bạn.',
-  thankyou: 'Cảm ơn bạn.',
+  xin_chao: 'Xin chào!',
+  cam_on: 'Cảm ơn bạn.',
+  toi_yeu_ban: 'Tôi yêu bạn.',
+  giup_do: 'Bạn có thể giúp đỡ tôi được không?',
+  xin_loi: 'Xin lỗi bạn.',
 };
 
-/** Khóa = các nhãn đã sort, nối bằng "|". */
+/** Khóa = hai mã class đã sort, nối bằng "|". */
 const COMBO_SIGN_PHRASES: Record<string, string> = {
-  'hello|iloveyou': 'Xin chào, rất vui được gặp bạn',
-  'hello|thankyou': 'Xin chào, cảm ơn bạn.',
-  'iloveyou|thankyou': 'Cảm ơn bạn rất nhiều.',
-  'hello|iloveyou|thankyou': 'Xin chào, rất vui được gặp bạn và cảm ơn bạn.',
+  'giup_do|xin_loi':
+    'Xin lỗi vì đã làm phiền, bạn có thể giúp đỡ tôi được không?',
+  'toi_yeu_ban|xin_loi': 'Xin lỗi vì đã làm bạn buồn.',
+  'cam_on|giup_do': 'Cảm ơn bạn đã nhiệt tình giúp đỡ tôi.',
+  'cam_on|toi_yeu_ban': 'Tôi yêu bạn, cảm ơn vì bạn đã luôn ở bên tôi.',
+  'giup_do|xin_chao': 'Xin chào, bạn có thể giúp đỡ tôi một chút được không?',
+  'cam_on|xin_chao': 'Tạm biệt, rất cảm ơn bạn đã dành thời gian cho tôi.',
 };
 
 function normalizeSignWords(words: string[]): string[] {
   return words
-    .map((w) => w.trim().toLowerCase())
+    .map((w) => toCanonicalSignKey(w))
     .filter(Boolean);
 }
 

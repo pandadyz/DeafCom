@@ -213,7 +213,7 @@ export default function RegisterPage() {
             </span>
             <Link
               className="font-body-md text-body-md text-primary font-semibold hover-text-on-primary-fixed-variant transition-colors"
-              href="/login"
+              href="/"
             >
               Đăng nhập
             </Link>

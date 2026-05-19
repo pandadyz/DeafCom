@@ -1,8 +1,10 @@
 {
   "classes": [
-    "hello",
-    "iloveyou",
-    "thankyou"
+    "xin_chao",
+    "cam_on",
+    "toi_yeu_ban",
+    "giup_do",
+    "xin_loi"
   ],
   "colors": [
     [
@@ -19,6 +21,16 @@
       131,
       193,
       103
+    ],
+    [
+      255,
+      99,
+      71
+    ],
+    [
+      255,
+      105,
+      180
     ]
   ]
 }

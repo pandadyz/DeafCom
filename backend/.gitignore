@@ -27,3 +27,11 @@ Thumbs.db
 LossAnalysis.ipynb
 .ipynb_checkpoints
 example_loggers
+
+logs/
+src/logs/
+src/data/
+src/checkpoints/
+*.keras
+*.npz
+hand_landmarker.task

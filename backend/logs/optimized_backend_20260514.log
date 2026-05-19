@@ -1,8 +1,0 @@
-2026-05-14 08:38:58,222 - optimized_backend - INFO - [realtime]📹 Starting simple realtime sign language server...[/realtime]
-2026-05-14 08:38:58,226 - optimized_backend - INFO - [info]Device: cpu[/info]
-2026-05-14 08:44:40,254 - optimized_backend - INFO - [info][sign] Client connected: 127.0.0.1:50889[/info]
-2026-05-14 08:45:57,919 - optimized_backend - INFO - [info][sign] Client connected: 127.0.0.1:60568[/info]
-2026-05-14 08:46:05,598 - optimized_backend - INFO - [info][sign] Client 127.0.0.1:50889 disconnected.[/info]
-2026-05-14 08:46:05,601 - optimized_backend - INFO - [info][sign] Connection closed: 127.0.0.1:50889[/info]
-2026-05-14 08:46:47,006 - optimized_backend - INFO - [info][sign] Client 127.0.0.1:60568 disconnected.[/info]
-2026-05-14 08:46:47,008 - optimized_backend - INFO - [info][sign] Connection closed: 127.0.0.1:60568[/info]

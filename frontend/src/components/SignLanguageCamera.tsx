@@ -44,7 +44,7 @@ export default function SignLanguageCamera({ onDetection, onConnectionChange }: 
   }, []);
 
   return (
-    <div className="w-full aspect-video bg-surface-dim rounded-xl overflow-hidden relative shadow-sm border border-surface-variant">
+    <div className="w-full bg-surface-dim rounded-xl overflow-hidden relative shadow-sm border border-surface-variant">
       <CameraFeed
         ref={cameraRef}
         onDetection={onDetection}

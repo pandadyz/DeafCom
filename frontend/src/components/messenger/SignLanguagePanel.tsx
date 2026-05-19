@@ -1,5 +1,6 @@
 import SignLanguageCamera from '@/components/SignLanguageCamera';
 import SentenceComposer from '@/components/messenger/SentenceComposer';
+import { formatSignForDisplay } from '@/components/messenger/signDisplayLabels';
 
 export interface SignLanguagePanelProps {
   isOpen: boolean;
@@ -125,9 +126,13 @@ export default function SignLanguagePanel({
                           ? 'cursor-default border-surface-variant bg-surface-container/50 text-on-surface-variant opacity-60'
                           : 'border-surface-variant bg-surface-container text-on-surface hover:border-primary/40 hover:bg-primary/10 hover:text-primary'
                       }`}
-                      title={isInComposer ? 'Đã thêm vào câu' : `Thêm "${word}" vào câu`}
+                      title={
+                        isInComposer
+                          ? 'Đã thêm vào câu'
+                          : `Thêm "${formatSignForDisplay(word)}" vào câu`
+                      }
                     >
-                      {word}
+                      {formatSignForDisplay(word)}
                       {!isInComposer && (
                         <span className="material-symbols-outlined text-[14px] opacity-60">add</span>
                       )}
@@ -159,17 +164,6 @@ export default function SignLanguagePanel({
         </div>
       </div>
 
-      <div className="shrink-0 border-t border-surface-variant bg-surface p-4">
-        <button
-          type="button"
-          onClick={onSendSignLanguageToChat}
-          disabled={!transcribedText.trim() || !selectedChat}
-          className="flex w-full items-center justify-center gap-2 rounded-xl border border-surface-variant bg-surface-container py-2.5 text-on-surface transition-colors hover:bg-surface-variant disabled:cursor-not-allowed disabled:opacity-50"
-        >
-          <span className="material-symbols-outlined text-[18px]">bolt</span>
-          <span className="text-sm font-medium">Gửi nhanh từ hiện tại</span>
-        </button>
-      </div>
     </aside>
   );
 }

@@ -1,0 +1,56 @@
+{
+  "classes": [
+    "xin_chao",
+    "cam_on",
+    "toi_yeu_ban",
+    "giup_do",
+    "xin_loi"
+  ],
+  "label_map": {
+    "xin_chao": 0,
+    "cam_on": 1,
+    "toi_yeu_ban": 2,
+    "giup_do": 3,
+    "xin_loi": 4
+  },
+  "sequence_length": 10,
+  "feature_dim": 126,
+  "sequences_per_class": {
+    "xin_chao": 40,
+    "cam_on": 40,
+    "toi_yeu_ban": 40,
+    "giup_do": 40,
+    "xin_loi": 40
+  },
+  "model_path": "my_model.keras",
+  "scaler_path": "landmark_scaler.npz",
+  "checkpoint_dir": "checkpoints\\lstm",
+  "augmentation": {
+    "copies_per_sample": 5,
+    "noise_std": 0.02,
+    "scale_range": [
+      0.88,
+      1.12
+    ],
+    "time_shift_max": 3,
+    "flip_prob": 0.5,
+    "mirror_x_prob": 0.4,
+    "temporal_mask_prob": 0.35
+  },
+  "best_epoch": {
+    "epoch": 120,
+    "val_loss": 3.298122521755431e-07,
+    "val_accuracy": 1.0,
+    "checkpoint": "epoch_120.keras"
+  },
+  "test_metrics": {
+    "accuracy": 1.0,
+    "f1_macro": 1.0
+  },
+  "training": {
+    "train_samples": 900,
+    "epochs_ran": 138,
+    "best_val_loss": 3.019967493855802e-07,
+    "best_val_accuracy": 1.0
+  }
+}
