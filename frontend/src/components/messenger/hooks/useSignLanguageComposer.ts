@@ -1,5 +1,6 @@
 import { useCallback, useRef, useState } from 'react';
 import { apiClient } from '@/services/api';
+import { formatSignForDisplay, formatSignsForDisplay } from '../signDisplayLabels';
 import { suggestSignPhrase } from '../signPhraseSuggestions';
 import type { Chat } from '../types';
 import type { ToastType } from '../types';
@@ -18,7 +19,7 @@ interface UseSignLanguageComposerOptions {
 }
 
 function buildDraftFromWords(words: string[]) {
-  return words.join(' ').trim();
+  return formatSignsForDisplay(words);
 }
 
 export function useSignLanguageComposer({
@@ -84,7 +85,8 @@ export function useSignLanguageComposer({
       setSuggestedSentence('');
 
       if (isDraftEdited) {
-        setMessageDraft((prev) => (prev.trim() ? `${prev.trim()} ${trimmed}` : trimmed));
+        const displayWord = formatSignForDisplay(trimmed);
+        setMessageDraft((prev) => (prev.trim() ? `${prev.trim()} ${displayWord}` : displayWord));
       } else {
         syncDraftFromWords(nextWords);
       }

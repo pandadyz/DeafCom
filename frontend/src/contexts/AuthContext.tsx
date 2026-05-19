@@ -67,7 +67,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       localStorage.setItem("access_token", data.access_token);
       apiClient.setToken(data.access_token);
       setUser(data.user);
-      router.push("/");
+      router.push("/messenger");
     } catch (error) {
       throw error;
     }
@@ -79,7 +79,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       localStorage.setItem("access_token", data.access_token);
       apiClient.setToken(data.access_token);
       setUser(data.user);
-      router.push("/");
+      router.push("/messenger");
     } catch (error) {
       throw error;
     }
@@ -89,7 +89,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     localStorage.removeItem("access_token");
     apiClient.setToken(null);
     setUser(null);
-    router.push("/login");
+    router.push("/");
   };
 
   return (

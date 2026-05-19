@@ -2,6 +2,7 @@ import asyncio
 import time
 from collections import deque
 
+import numpy as np
 from fastapi import APIRouter, WebSocket, WebSocketDisconnect, status
 
 import realtime_optimized as legacy_sign
@@ -25,6 +26,7 @@ async def websocket_sign(websocket: WebSocket):
     processed_frames = 0
     realtime_fps = 0.0
     word_window: deque[str | None] = deque(maxlen=legacy_sign.CFG.stabilization_window)
+    sequence_buffer: deque[np.ndarray] = deque(maxlen=legacy_sign.CFG.sequence_length)
 
     try:
         while True:
@@ -48,15 +50,32 @@ async def websocket_sign(websocket: WebSocket):
                 continue
             last_processed_at = now
 
-            tensor = legacy_sign.decode_and_preprocess(data)
-            if tensor is None:
+            keypoints = legacy_sign.decode_and_preprocess(data)
+            if keypoints is None:
                 await websocket.send_json({"error": "invalid_frame", "detections": []})
                 continue
 
+            sequence_buffer.append(keypoints)
+
+            if len(sequence_buffer) < legacy_sign.CFG.sequence_length:
+                await websocket.send_json(
+                    {
+                        "error": None,
+                        "event": "buffering",
+                        "source": "ws/sign",
+                        "buffer_progress": len(sequence_buffer)
+                        / legacy_sign.CFG.sequence_length,
+                        "detections": [],
+                    }
+                )
+                continue
+
             infer_start = time.perf_counter()
-            detections = await asyncio.to_thread(legacy_sign.infer_single_frame, tensor)
+            sequence_array = np.array(list(sequence_buffer))
+            prediction = await asyncio.to_thread(legacy_sign.infer_sequence, sequence_array)
             latency_ms = round((time.perf_counter() - infer_start) * 1000, 2)
 
+            detections = [prediction] if prediction else []
             candidate_word = legacy_sign.pick_candidate_word(detections)
             word_window.append(candidate_word)
             stable_word = legacy_sign.get_stable_word(word_window)
@@ -92,4 +111,3 @@ async def websocket_sign(websocket: WebSocket):
 @router.get("/health")
 async def sign_health() -> dict:
     return await legacy_sign.health()
-

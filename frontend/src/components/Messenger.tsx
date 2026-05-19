@@ -76,6 +76,9 @@ export default function Messenger() {
         messageInput={chat.messageInput}
         isConnected={isConnected}
         messagesEndRef={chat.messagesEndRef}
+        messagesContainerRef={chat.messagesContainerRef}
+        handleScroll={chat.handleScroll}
+        isLoadingMore={chat.isLoadingMore}
         showSignLanguagePanel={signLanguage.showSignLanguagePanel}
         onMessageInputChange={chat.setMessageInput}
         onSendMessage={chat.handleSendMessage}

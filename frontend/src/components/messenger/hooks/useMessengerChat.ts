@@ -22,6 +22,11 @@ export function useMessengerChat({
   const [isLoadingMessages, setIsLoadingMessages] = useState(false);
   const [chatError, setChatError] = useState<string | null>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const [nextCursor, setNextCursor] = useState<string | undefined>(undefined);
+  const [hasMore, setHasMore] = useState(false);
+  const [isLoadingMore, setIsLoadingMore] = useState(false);
+  const messagesContainerRef = useRef<HTMLDivElement>(null);
+  const [isInitialLoad, setIsInitialLoad] = useState(true);
 
   const scrollToBottom = useCallback(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -36,8 +41,11 @@ export function useMessengerChat({
       try {
         const chat = chats.find((c) => c.id === chatId);
         if (chat) {
-          const response = await apiClient.getMessages(chat.userId);
+          const response = await apiClient.getMessages(chat.userId, 20);
           setMessages(response.items);
+          setNextCursor(response.next_cursor);
+          setHasMore(response.has_more);
+          setIsInitialLoad(true);
         }
       } catch (error) {
         console.error('Failed to load messages:', error);
@@ -55,12 +63,55 @@ export function useMessengerChat({
         }
 
         setMessages([]);
+        setNextCursor(undefined);
+        setHasMore(false);
       } finally {
         setIsLoadingMessages(false);
       }
     },
     [userId, chats]
   );
+
+  const loadMoreMessages = useCallback(async () => {
+    if (!userId || !selectedChat || !nextCursor || isLoadingMore || !hasMore) return;
+
+    setIsLoadingMore(true);
+    try {
+      const chat = chats.find((c) => c.id === selectedChat);
+      if (chat) {
+        const response = await apiClient.getMessages(chat.userId, 20, nextCursor);
+        
+        // Store current scroll height before adding new messages
+        const container = messagesContainerRef.current;
+        const previousScrollHeight = container?.scrollHeight || 0;
+        const previousScrollTop = container?.scrollTop || 0;
+
+        // Prepend older messages
+        setMessages((prev) => [...response.items, ...prev]);
+        setNextCursor(response.next_cursor);
+        setHasMore(response.has_more);
+
+        // Restore scroll position after messages are added
+        setTimeout(() => {
+          if (container) {
+            const newScrollHeight = container.scrollHeight;
+            container.scrollTop = previousScrollTop + (newScrollHeight - previousScrollHeight);
+          }
+        }, 0);
+      }
+    } catch (error) {
+      console.error('Failed to load more messages:', error);
+    } finally {
+      setIsLoadingMore(false);
+    }
+  }, [userId, selectedChat, nextCursor, isLoadingMore, hasMore, chats]);
+
+  const handleScroll = useCallback((e: React.UIEvent<HTMLDivElement>) => {
+    const container = e.currentTarget;
+    if (container.scrollTop === 0 && hasMore && !isLoadingMore) {
+      loadMoreMessages();
+    }
+  }, [hasMore, isLoadingMore, loadMoreMessages]);
 
   const handleWebSocketMessage = useCallback(
     (message: { event: string; payload: Record<string, unknown> }) => {
@@ -114,8 +165,11 @@ export function useMessengerChat({
   }, [lastMessage, handleWebSocketMessage]);
 
   useEffect(() => {
-    scrollToBottom();
-  }, [messages, scrollToBottom]);
+    if (isInitialLoad) {
+      scrollToBottom();
+      setIsInitialLoad(false);
+    }
+  }, [isInitialLoad, scrollToBottom]);
 
   const handleSendMessage = useCallback(async () => {
     if (!messageInput.trim() || !selectedChat || !userId) return;
@@ -156,5 +210,8 @@ export function useMessengerChat({
     messagesEndRef,
     handleSendMessage,
     currentChat,
+    messagesContainerRef,
+    handleScroll,
+    isLoadingMore,
   };
 }

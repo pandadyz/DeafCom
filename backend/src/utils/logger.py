@@ -210,13 +210,14 @@ class SignLanguageLogger:
         ╚═╝  ╚═══╝ ╚═════╝ ╚═════╝ ╚═════╝    ╚═╝
 
 ╔═══════════════════════════════════════════════════════════╗
-║  🤟 Sign Language Detection with DETR                     ║
-║  🎯 Real-time Hand Sign Recognition                       ║
-║  🏋️  DETR (Detection Transformer) Model                    ║
-║  📊 Advanced Computer Vision Pipeline                     ║
+║  Sign Language Detection (LSTM + MediaPipe)               ║
+║  Real-time Hand Sign Recognition                          ║
 ╚═══════════════════════════════════════════════════════════╝
         """
-        self.console.print(Panel(banner, style="bold cyan", border_style="blue", expand=False))
+        try:
+            self.console.print(Panel(banner, style="bold cyan", border_style="blue", expand=False))
+        except UnicodeEncodeError:
+            self.info("Sign Language Detection - Real-time server")
 
     def print_model_summary(self, model_info: Dict[str, Any]):
         """Print model architecture summary."""

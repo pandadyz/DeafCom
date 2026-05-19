@@ -13,6 +13,9 @@ interface MessengerChatAreaProps {
   messageInput: string;
   isConnected: boolean;
   messagesEndRef: RefObject<HTMLDivElement | null>;
+  messagesContainerRef: RefObject<HTMLDivElement | null>;
+  handleScroll: (e: React.UIEvent<HTMLDivElement>) => void;
+  isLoadingMore: boolean;
   showSignLanguagePanel: boolean;
   onMessageInputChange: (value: string) => void;
   onSendMessage: () => void;
@@ -30,6 +33,9 @@ export default function MessengerChatArea({
   messageInput,
   isConnected,
   messagesEndRef,
+  messagesContainerRef,
+  handleScroll,
+  isLoadingMore,
   showSignLanguagePanel,
   onMessageInputChange,
   onSendMessage,
@@ -92,7 +98,11 @@ export default function MessengerChatArea({
             </div>
           </header>
 
-          <div className="flex-1 overflow-y-auto p-lg flex flex-col relative">
+          <div 
+            ref={messagesContainerRef}
+            onScroll={handleScroll}
+            className="flex-1 overflow-y-auto p-lg flex flex-col relative"
+          >
             {isLoadingMessages ? (
               <div className="flex items-center justify-center h-full">
                 <span className="text-on-surface-variant">Loading messages...</span>
@@ -117,6 +127,11 @@ export default function MessengerChatArea({
                   </div>
                 ) : (
                   <>
+                    {isLoadingMore && (
+                      <div className="flex items-center justify-center py-2">
+                        <span className="text-on-surface-variant text-sm">Loading older messages...</span>
+                      </div>
+                    )}
                     {messages.map((message, index) => {
                       const isOwnMessage = message.sender_id === currentUserId;
                       const showAvatar =
