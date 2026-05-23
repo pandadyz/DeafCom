@@ -1,7 +1,7 @@
-import { RefObject } from 'react';
+import React, { RefObject } from 'react';
 import { Message } from '@/services/api';
 import type { Chat } from './types';
-import { formatTimestamp } from './utils';
+import { formatMessageTime, formatDateDivider } from './utils';
 
 interface MessengerChatAreaProps {
   selectedChat: string | null;
@@ -138,38 +138,70 @@ export default function MessengerChatArea({
                         !isOwnMessage &&
                         (index === 0 || messages[index - 1].sender_id !== message.sender_id);
 
+                      // Hiển thị dải ngăn cách ngày nếu tin nhắn này thuộc ngày khác tin trước
+                      const prevMessage = messages[index - 1];
+                      const showDateDivider =
+                        index === 0 ||
+                        (prevMessage &&
+                          new Date(message.created_at).toDateString() !==
+                            new Date(prevMessage.created_at).toDateString());
+
                       return (
-                        <div
-                          key={message.id}
-                          className={`mb-md ${isOwnMessage ? 'flex flex-col items-end' : 'flex items-end gap-sm'}`}
-                        >
-                          {showAvatar && (
-                            <img
-                              alt={`${currentChat?.name} Small Avatar`}
-                              className="w-8 h-8 rounded-full object-cover border border-surface-variant mb-1"
-                              src={currentChat?.avatar}
-                            />
+                        <React.Fragment key={message.id}>
+                          {showDateDivider && (
+                            <div className="flex items-center gap-3 my-4">
+                              <div className="flex-1 h-px bg-surface-variant" />
+                              <span className="text-xs text-on-surface-variant font-medium px-2 flex-shrink-0">
+                                {formatDateDivider(message.created_at)}
+                              </span>
+                              <div className="flex-1 h-px bg-surface-variant" />
+                            </div>
                           )}
-                          {!showAvatar && !isOwnMessage && <div className="w-8" />}
-                          <div
-                            className={`${
-                              isOwnMessage
-                                ? 'bg-primary text-on-primary font-body-lg text-body-lg py-2 px-4 rounded-[18px] rounded-br-[4px] max-w-[max-bubble-width] shadow-[0px_2px_8px_rgba(0,0,0,0.05)]'
-                                : 'bg-surface-container text-on-surface font-body-lg text-body-lg py-2 px-4 rounded-[18px] rounded-bl-[4px] max-w-[max-bubble-width]'
-                            }`}
-                          >
-                            {message.is_recalled ? (
-                              <span className="italic text-on-surface-variant">Message recalled</span>
-                            ) : (
-                              message.content
-                            )}
-                          </div>
-                          <div
-                            className={`text-xs text-on-surface-variant mt-1 ${isOwnMessage ? 'text-right' : 'text-left'}`}
-                          >
-                            {formatTimestamp(message.created_at)}
-                          </div>
-                        </div>
+                          {isOwnMessage ? (
+                            /* ── Tin nhắn GỬI (phải) ── */
+                            <div className="flex flex-col items-end mb-md">
+                              <div className="bg-primary text-on-primary font-body-lg text-body-lg py-2 px-4 rounded-[18px] rounded-br-[4px] max-w-[max-bubble-width] shadow-[0px_2px_8px_rgba(0,0,0,0.12)]">
+                                {message.is_recalled ? (
+                                  <span className="italic opacity-70">Tin nhắn đã thu hồi</span>
+                                ) : (
+                                  message.content
+                                )}
+                              </div>
+                              <span className="text-xs text-on-surface-variant mt-1 mr-1">
+                                {formatMessageTime(message.created_at)}
+                              </span>
+                            </div>
+                          ) : (
+                            /* ── Tin nhắn NHẬN (trái) ── */
+                            <div className="flex items-end gap-2 mb-md">
+                              {/* Avatar: hiện nếu là tin đầu nhóm, ẩn nhưng giữ chỗ nếu không */}
+                              {showAvatar ? (
+                                <img
+                                  alt={`${currentChat?.name} avatar`}
+                                  className="w-8 h-8 rounded-full object-cover border border-surface-variant flex-shrink-0 self-end"
+                                  src={currentChat?.avatar}
+                                />
+                              ) : (
+                                <div className="w-8 flex-shrink-0" />
+                              )}
+
+                              {/* Cột: bubble + timestamp */}
+                              <div className="flex flex-col items-start">
+                                <div className="bg-surface-container-high text-on-surface font-body-lg text-body-lg py-2 px-4 rounded-[18px] rounded-bl-[4px] max-w-[max-bubble-width] shadow-[0px_1px_4px_rgba(0,0,0,0.08)]">
+                                  {message.is_recalled ? (
+                                    <span className="italic text-on-surface-variant">Tin nhắn đã thu hồi</span>
+                                  ) : (
+                                    message.content
+                                  )}
+                                </div>
+                                <span className="text-xs text-on-surface-variant mt-1 ml-1">
+                                  {formatMessageTime(message.created_at)}
+                                </span>
+                              </div>
+                            </div>
+                          )}
+
+                        </React.Fragment>
                       );
                     })}
                     <div ref={messagesEndRef} className="h-4 w-full" />

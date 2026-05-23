@@ -8,8 +8,8 @@ import {
   MODEL_FRAME_SIZE,
 } from "@/lib/cameraFrame";
 
-const WS_URL = process.env.NEXT_PUBLIC_WS_URL ?? "ws://localhost:8000/ws/sign";
-const SEND_FPS = 15;
+const WS_URL = process.env.NEXT_PUBLIC_WS_URL ?? "ws://localhost:8000/ws";
+const SEND_FPS = 20;
 const SEND_INTERVAL_MS = 1000 / SEND_FPS;
 const FRAME_SIZE = MODEL_FRAME_SIZE;
 
@@ -40,6 +40,7 @@ interface CameraFeedProps {
     fps: number;
     event?: string;
     stableWord?: string | null;
+    previewWord?: string | null;
     candidateSigns?: string[];
   }) => void;
   onConnectionChange: (isConnected: boolean) => void;
@@ -59,6 +60,7 @@ const CameraFeed = forwardRef<CameraFeedRef, CameraFeedProps>(
   const wsSessionIdRef = useRef(0);
   const onDetectionRef = useRef(onDetection);
   const onConnectionChangeRef = useRef(onConnectionChange);
+  const lastActiveDetectionAtRef = useRef<number | null>(null);
 
   const [isStreaming, setIsStreaming] = useState(false);
   const [error, setError] = useState("");
@@ -152,7 +154,7 @@ const CameraFeed = forwardRef<CameraFeedRef, CameraFeedProps>(
     canvas.height = FRAME_SIZE;
     if (!drawCenterCroppedFrame(ctx, video, FRAME_SIZE)) return;
 
-    const base64 = canvas.toDataURL("image/jpeg", 0.75).split(",")[1];
+    const base64 = canvas.toDataURL("image/jpeg", 0.55).split(",")[1];
     ws.send(base64);
   }, []);
 
@@ -174,6 +176,7 @@ const CameraFeed = forwardRef<CameraFeedRef, CameraFeedProps>(
       if (sessionId !== wsSessionIdRef.current) return;
       onConnectionChangeRef.current(true);
       setError("");
+      lastActiveDetectionAtRef.current = null;
       startSendingFrames();
     };
 
@@ -182,12 +185,38 @@ const CameraFeed = forwardRef<CameraFeedRef, CameraFeedProps>(
       try {
         const msg = JSON.parse(event.data);
         const detections = Array.isArray(msg?.detections) ? msg.detections : [];
+        const eventType = typeof msg?.event === "string" ? msg.event : undefined;
+        const previewWord =
+          typeof msg?.preview_word === "string" ? msg.preview_word : null;
+        const hasActiveDetection =
+          detections.length > 0 || Boolean(previewWord?.trim());
+
+        if (
+          eventType === "no_hands" ||
+          eventType === "no_detection" ||
+          eventType === "buffering" ||
+          !hasActiveDetection
+        ) {
+          drawOverlay([]);
+          onDetectionRef.current({
+            detections: [],
+            fps: typeof msg?.server_fps === "number" ? msg.server_fps : SEND_FPS,
+            event: eventType ?? "no_detection",
+            stableWord: null,
+            previewWord: null,
+            candidateSigns: [],
+          });
+          return;
+        }
+
+        lastActiveDetectionAtRef.current = Date.now();
         drawOverlay(detections);
         onDetectionRef.current({
           detections,
           fps: typeof msg?.server_fps === "number" ? msg.server_fps : SEND_FPS,
-          event: msg?.event,
+          event: eventType,
           stableWord: msg?.stable_word,
+          previewWord: previewWord,
           candidateSigns: Array.isArray(msg?.candidate_signs) ? msg.candidate_signs : [],
         });
       } catch (err) {
@@ -330,6 +359,24 @@ const CameraFeed = forwardRef<CameraFeedRef, CameraFeedProps>(
     disconnect,
     get isStreaming() { return isStreaming; }
   }), [startCamera, stopCamera, disconnect, isStreaming]);
+
+  useEffect(() => {
+    if (!isStreaming) return;
+    const watchdog = setInterval(() => {
+      const lastAt = lastActiveDetectionAtRef.current;
+      if (lastAt === null || Date.now() - lastAt < 500) return;
+      drawOverlay([]);
+      onDetectionRef.current({
+        detections: [],
+        fps: SEND_FPS,
+        event: "no_detection",
+        stableWord: null,
+        previewWord: null,
+        candidateSigns: [],
+      });
+    }, 150);
+    return () => clearInterval(watchdog);
+  }, [isStreaming, drawOverlay]);
 
   useEffect(() => {
     if (autoStart) {

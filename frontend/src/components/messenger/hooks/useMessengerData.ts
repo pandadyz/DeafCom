@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { apiClient, ConversationItem, Friend, FriendRequest, User } from '@/services/api';
 import type { Chat } from '../types';
-import { getAvatarUrl } from '../utils';
+import { getAvatarUrl, formatConversationTime } from '../utils';
 import type { ToastType } from '../types';
 
 interface UseMessengerDataOptions {
@@ -40,7 +40,7 @@ export function useMessengerData({ userId, hasToken, showToast }: UseMessengerDa
   }, [userId, hasToken]);
 
   const loadFriends = useCallback(async () => {
-    if (!userId) return;
+    if (!userId || !hasToken) return;
 
     setIsLoadingFriends(true);
     try {
@@ -51,10 +51,10 @@ export function useMessengerData({ userId, hasToken, showToast }: UseMessengerDa
     } finally {
       setIsLoadingFriends(false);
     }
-  }, [userId]);
+  }, [userId, hasToken]);
 
   const loadFriendRequests = useCallback(async () => {
-    if (!userId) return;
+    if (!userId || !hasToken) return;
 
     try {
       const response = await apiClient.getFriendRequests();
@@ -62,10 +62,10 @@ export function useMessengerData({ userId, hasToken, showToast }: UseMessengerDa
     } catch (error) {
       console.error('Failed to load friend requests:', error);
     }
-  }, [userId]);
+  }, [userId, hasToken]);
 
   const loadAllUsers = useCallback(async () => {
-    if (!userId) return;
+    if (!userId || !hasToken) return;
 
     try {
       const users = await apiClient.getUsers();
@@ -73,7 +73,7 @@ export function useMessengerData({ userId, hasToken, showToast }: UseMessengerDa
     } catch (error) {
       console.error('Failed to load all users:', error);
     }
-  }, [userId]);
+  }, [userId, hasToken]);
 
   const loadUsers = useCallback(async () => {
     if (!userId) return;
@@ -117,11 +117,7 @@ export function useMessengerData({ userId, hasToken, showToast }: UseMessengerDa
         name: conv.friend.username,
         avatar: getAvatarUrl(conv.friend.username),
         lastMessage: 'No messages yet',
-        timestamp: new Date(conv.last_message_at).toLocaleTimeString('en-US', {
-          hour: 'numeric',
-          minute: '2-digit',
-          hour12: true,
-        }),
+        timestamp: formatConversationTime(conv.last_message_at),
         userId: conv.friend.id,
       }));
       setChats(conversationChats);

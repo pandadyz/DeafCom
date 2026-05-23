@@ -1,6 +1,7 @@
-const API_BASE_URL =
-  process.env.NEXT_PUBLIC_API_URL ??
-  (process.env.NODE_ENV === 'production' ? 'http://localhost:8000' : 'http://localhost:8000');
+// Dùng relative URL "/api" để Next.js proxy forward đến backend (tránh CORS từ browser).
+// Nếu có NEXT_PUBLIC_API_URL (e.g. ngrok), dùng thẳng URL đó.
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL ?? "/api";
+
 
 export interface Message {
   id: string;
