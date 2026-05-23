@@ -253,18 +253,45 @@ export function useSignLanguageComposer({
   }, [transcribedText, selectedChat, userId, chats, sendMessage, showToast]);
 
   const handleDetection = useCallback(
-    (detectionData: { stableWord?: string | null; candidateSigns?: string[] }) => {
-      if (detectionData.stableWord) {
-        setTranscribedText(detectionData.stableWord);
-        const word = detectionData.stableWord.trim();
-        if (word) {
-          setTranscribedWordsHistory((prev) =>
-            prev.some((w) => w.toLowerCase() === word.toLowerCase()) ? prev : [...prev, word]
-          );
-        }
+    (detectionData: {
+      event?: string;
+      stableWord?: string | null;
+      previewWord?: string | null;
+      candidateSigns?: string[];
+      detections?: { class?: string }[];
+    }) => {
+      const shouldClear =
+        detectionData.event === 'no_hands' ||
+        detectionData.event === 'no_detection';
+
+      if (shouldClear) {
+        setTranscribedText('');
+        setRecognizedGestures([]);
+        return;
       }
+
+      const liveWord =
+        detectionData.previewWord?.trim() ||
+        detectionData.detections?.[0]?.class?.trim() ||
+        detectionData.candidateSigns?.[0]?.trim() ||
+        null;
+
+      if (liveWord) {
+        setTranscribedText(liveWord);
+      }
+
       if (detectionData.candidateSigns?.length) {
         setRecognizedGestures(detectionData.candidateSigns);
+      }
+
+      const confirmed = detectionData.stableWord?.trim();
+      if (confirmed) {
+        setTranscribedText(confirmed);
+        setTranscribedWordsHistory((prev) =>
+          prev.some((w) => w.toLowerCase() === confirmed.toLowerCase())
+            ? prev
+            : [...prev, confirmed]
+        );
       }
     },
     []

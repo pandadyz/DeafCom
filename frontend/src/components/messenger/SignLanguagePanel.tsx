@@ -12,7 +12,12 @@ export interface SignLanguagePanelProps {
   suggestedSentence: string;
   isSuggestingLoading: boolean;
   onClose: () => void;
-  onDetection: (data: { stableWord?: string | null; candidateSigns?: string[] }) => void;
+  onDetection: (data: {
+    stableWord?: string | null;
+    previewWord?: string | null;
+    candidateSigns?: string[];
+    detections?: { class?: string }[];
+  }) => void;
   onClearAll: () => void;
   onClearHistory: () => void;
   onSelectWord: (word: string) => void;

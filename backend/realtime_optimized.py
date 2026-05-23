@@ -248,6 +248,7 @@ async def websocket_endpoint(websocket: WebSocket):
     realtime_fps = 0.0
     word_window: deque[Optional[str]] = deque(maxlen=CFG.stabilization_window)
     sequence_buffer: deque[np.ndarray] = deque(maxlen=CFG.sequence_length)
+    last_had_hands = False  # Track nếu frame cuối cùng có tay
 
     try:
         while True:
@@ -276,6 +277,7 @@ async def websocket_endpoint(websocket: WebSocket):
                 # No hands detected - clear buffers and return empty detections
                 sequence_buffer.clear()
                 word_window.clear()
+                last_had_hands = False
                 await websocket.send_json({
                     "error": None,
                     "event": "no_hands",
@@ -287,10 +289,11 @@ async def websocket_endpoint(websocket: WebSocket):
                 continue
 
             # Add keypoints to sequence buffer
+            last_had_hands = True
             sequence_buffer.append(keypoints)
 
-            # Only make prediction when buffer is full
-            if len(sequence_buffer) == CFG.sequence_length:
+            # Only make prediction when buffer is full AND latest frame has hands
+            if len(sequence_buffer) == CFG.sequence_length and last_had_hands:
                 infer_start = time.perf_counter()
                 sequence_array = np.array(list(sequence_buffer))
                 prediction = await asyncio.to_thread(infer_sequence, sequence_array)

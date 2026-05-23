@@ -19,6 +19,7 @@ app = FastAPI(
     title=settings.app_name,
     version=settings.app_version,
     lifespan=legacy_sign.lifespan,
+    redirect_slashes=False,  # Tránh 307 redirect làm mất Authorization header
 )
 
 app.add_middleware(

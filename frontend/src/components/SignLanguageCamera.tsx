@@ -8,6 +8,7 @@ interface DetectionData {
   fps: number;
   event?: string;
   stableWord?: string | null;
+  previewWord?: string | null;
   candidateSigns?: string[];
 }
 

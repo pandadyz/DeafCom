@@ -65,6 +65,7 @@ async def respond_to_friend_request_endpoint(
     return FriendRequestResponse.model_validate(friend_request)
 
 
+@router.get("", response_model=FriendListResponse)
 @router.get("/", response_model=FriendListResponse)
 async def get_friends_endpoint(
     current_user: User = Depends(get_current_user),
